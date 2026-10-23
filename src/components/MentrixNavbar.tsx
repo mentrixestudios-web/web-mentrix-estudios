@@ -12,6 +12,7 @@ export default function MentrixNavbar() {
     { label: "Inicio", href: "#hero" },
     { label: "Juegos", href: "#juegos" },
     { label: "Línea de Tiempo", href: "#linea-de-tiempo" },
+    { label: "Mascotas", href: "#mascotas" },
     { label: "Estudio Bíblico", href: "#estudio-biblico" },
     { label: "El Estudio", href: "#estudio" },
     { label: "Contacto", href: "#contacto" },
@@ -22,39 +23,39 @@ export default function MentrixNavbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-18 flex items-center justify-between gap-4">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-700 p-0.5 shadow-lg shadow-purple-500/25 group-hover:shadow-purple-500/40 transition-shadow">
-            <div className="w-full h-full bg-[#0c0822] rounded-[10px] flex items-center justify-center overflow-hidden">
+          <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 via-purple-600 to-indigo-700 p-0.5 shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-shadow">
+            <div className="w-full h-full bg-[#08031a] rounded-[10px] flex items-center justify-center overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/mentrix-mascot.webp"
+                src="/logo-mentrix-oficial.jpg"
                 alt="Mentrix Logo"
-                className="w-8 h-8 object-contain transition-transform group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform group-hover:scale-110"
               />
             </div>
           </div>
           <div className="flex flex-col">
             <div className="font-display font-extrabold text-xl tracking-wider text-white flex items-center gap-1.5 leading-none">
               <span>MENTRIX</span>
-              <span className="text-xs font-bold px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30 uppercase tracking-widest">
+              <span className="text-xs font-bold px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 uppercase tracking-widest">
                 Estudios
               </span>
             </div>
-            <span className="text-[10px] text-slate-400 font-medium tracking-wide mt-1">
-              Smart Games & Interactive
+            <span className="text-[10.5px] text-purple-300/80 font-medium tracking-wide mt-1 italic">
+              Juega pensando. Piensa jugando.
             </span>
           </div>
         </Link>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden lg:flex items-center gap-6 text-sm font-medium">
+        <nav className="hidden xl:flex items-center gap-5 text-sm font-medium">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="text-slate-300 hover:text-purple-400 transition-colors py-1 relative group"
+              className="text-slate-300 hover:text-cyan-400 transition-colors py-1 relative group"
             >
               {link.label}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-400 transition-all duration-300 group-hover:w-full" />
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </nav>
