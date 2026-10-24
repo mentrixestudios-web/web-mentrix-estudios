@@ -17,7 +17,9 @@ export const metadata: Metadata = {
     "Estudio Bíblico interactivo",
     "desarrollo indie",
   ],
-  authors: [{ name: "John Andrés Arancibia Maureira" }],
+  authors: [{ name: "ENLACE Soluciones Digitales", url: "https://redenlace.cl" }],
+  creator: "ENLACE Soluciones Digitales",
+  publisher: "ENLACE Soluciones Digitales",
   icons: {
     icon: [
       { url: "/favicon.ico" },

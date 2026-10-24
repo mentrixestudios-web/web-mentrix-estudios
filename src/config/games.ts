@@ -31,8 +31,8 @@ export const MENTRIX_GAMES: GameItem[] = [
       { value: "Offline", label: "Modo local" },
     ],
     downloads: {
-      playStoreUrl: "https://play.google.com/store/apps",
-      apkUrl: "/downloads/mentrix-mind-game.apk",
+      playStoreUrl: "https://play.google.com/store/apps/details?id=com.mentrix.quienestaenmente&pcampaignid=web_share",
+      apkUrl: "https://play.google.com/store/apps/details?id=com.mentrix.quienestaenmente&pcampaignid=web_share",
     },
   },
   {
@@ -92,7 +92,8 @@ export const MENTRIX_GAMES: GameItem[] = [
       { value: "Bíblico", label: "Histórico" },
     ],
     downloads: {
-      playStoreUrl: "https://play.google.com/store/apps",
+      playStoreUrl: "https://play.google.com/store/apps/details?id=com.mentrix.biblia&pcampaignid=web_share",
+      apkUrl: "https://play.google.com/store/apps/details?id=com.mentrix.biblia&pcampaignid=web_share",
     },
   },
 ];
@@ -101,10 +102,11 @@ export const STUDIO_INFO = {
   name: "Mentrix Estudios",
   tagline: "Videojuegos, trivias inteligentes y experiencias interactivas que expanden tu mente.",
   description:
-    "Somos un estudio independiente enfocado en crear videojuegos de deducción, retos de conocimiento y herramientas interactivas de alta calidad. Diseñamos dinámicas divertidas, accesibles y con valor cultural e intelectual.",
-  founder: "John Andrés Arancibia Maureira",
+    "Estudio independiente de desarrollo de videojuegos, retos de deducción y herramientas interactivas, creado y respaldado por ENLACE Soluciones Digitales. Diseñamos dinámicas divertidas, accesibles y con valor cultural e intelectual.",
+  founder: "ENLACE Soluciones Digitales",
+  creator: "ENLACE Soluciones Digitales",
   location: "La Serena, Chile",
-  contactEmail: "contacto@mentrixestudios.com",
+  contactEmail: "mentrix.estudios@gmail.com",
   agencyPartner: {
     name: "ENLACE Soluciones Digitales",
     url: "https://redenlace.cl",

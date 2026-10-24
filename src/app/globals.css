@@ -33,6 +33,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.35);
 }
 
+/* Vibrant Dual-Tone Gradients */
 .text-gradient-purple {
   background: linear-gradient(135deg, #c084fc 0%, #a855f7 50%, #38bdf8 100%);
   -webkit-background-clip: text;

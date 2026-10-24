@@ -134,15 +134,17 @@ export default function GameCard({ game }: GameCardProps) {
           <div className="w-full sm:w-auto flex items-center gap-2">
             {isAvailable ? (
               <a
-                href={game.downloads?.apkUrl || game.downloads?.playStoreUrl || "#"}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-xs sm:text-sm shadow-md shadow-purple-900/40 transition-all transform hover:-translate-y-0.5"
+                href={game.downloads?.playStoreUrl || game.downloads?.apkUrl || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-bold text-xs uppercase tracking-wider shadow-md shadow-purple-600/30 transition-all transform hover:-translate-y-0.5"
               >
-                <Download className="w-4 h-4" />
-                <span>Descargar Juego</span>
+                <Download className="w-4 h-4 text-cyan-200" />
+                <span>Google Play</span>
               </a>
             ) : (
-              <div className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 font-semibold text-xs sm:text-sm cursor-default">
-                <Clock className="w-4 h-4 text-amber-400 animate-spin" />
+              <div className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-amber-950/60 border border-amber-500/40 text-amber-300 font-semibold text-xs uppercase tracking-wider cursor-default shadow-inner">
+                <Clock className="w-3.5 h-3.5 text-amber-400" />
                 <span>En Desarrollo Activo</span>
               </div>
             )}

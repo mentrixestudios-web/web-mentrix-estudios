@@ -1,8 +1,27 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
-import { Clock, Zap, History, Milestone, Compass, Sparkles, Bell } from "lucide-react";
+import { Clock, Zap, History, Milestone, Compass, Sparkles, Bell, RefreshCw, CheckCircle2 } from "lucide-react";
+
+const MENTI_TIEMPO_DIALOGUES = [
+  "¡El tiempo no se detiene! Quien conoce la historia tiene el poder de dominarlo. ⏳",
+  "¿El telescopio de Galileo se inventó antes o después de la llegada a América? ¡A ver si no dudas! 📜",
+  "¡Cuidado con mezclar la Revolución Industrial con el Imperio Romano! Cada era tiene su lugar. 🏛️",
+  "Cada carta cronológica que ordenes correctamente te acerca a ser un Maestro de las Eras. ✨",
+  "Desde el 2500 a.C. hasta la inteligencia artificial... ¡el viaje en el tiempo apenas comienza! 🚀",
+];
 
 export default function LineaDeTiempoSpotlight() {
+  const [dialogueIdx, setDialogueIdx] = useState(0);
+  const [bouncing, setBouncing] = useState(false);
+
+  const handleMascotClick = () => {
+    setBouncing(true);
+    setDialogueIdx((prev) => (prev + 1) % MENTI_TIEMPO_DIALOGUES.length);
+    setTimeout(() => setBouncing(false), 500);
+  };
+
   const timelineSteps = [
     {
       era: "Antigüedad Clásica",
@@ -112,21 +131,70 @@ export default function LineaDeTiempoSpotlight() {
             </div>
           </div>
 
-          {/* Right Column: Visual Timeline Interactive Graphic */}
+          {/* Right Column: Visual Timeline Interactive Graphic with Companion Mascot */}
           <div className="lg:col-span-5">
-            <div className="relative rounded-3xl p-6 sm:p-8 bg-gradient-to-b from-[#140b30] to-[#0a051d] border border-amber-500/30 shadow-2xl shadow-amber-950/20">
-              <div className="flex items-center justify-between pb-6 mb-6 border-b border-purple-900/40">
-                <div>
-                  <h3 className="font-display font-bold text-xl text-white">Simulador de Línea Temporal</h3>
-                  <p className="text-xs text-slate-400">Concepto de juego en desarrollo</p>
+            <div className="relative rounded-3xl p-6 sm:p-7 bg-gradient-to-b from-[#160d34] via-[#100829] to-[#0a051d] border-2 border-amber-500/40 shadow-2xl shadow-amber-950/30">
+              
+              {/* Mascot Companion with Interactive Speech Bubble */}
+              <div className="flex items-start gap-3 sm:gap-4 pb-5 mb-5 border-b border-purple-900/40">
+                {/* Clickable Mascot */}
+                <button
+                  onClick={handleMascotClick}
+                  title="¡Haz clic en Menti Tiempo para consultar las eras!"
+                  className={`relative shrink-0 w-20 h-20 sm:w-24 sm:h-24 cursor-pointer group transition-transform ${
+                    bouncing ? "scale-110 -translate-y-2" : "hover:scale-105"
+                  }`}
+                >
+                  <div className="absolute inset-0 bg-amber-500/30 rounded-full blur-xl group-hover:bg-orange-500/40 transition-colors" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/mascota-menti-tiempo.png"
+                    alt="Menti Tiempo"
+                    className="w-full h-full object-contain relative z-10 drop-shadow-[0_8px_16px_rgba(245,158,11,0.5)]"
+                  />
+                  <span className="absolute -bottom-1 -right-1 z-20 p-1 rounded-full bg-amber-600 text-white text-[10px] shadow-sm animate-pulse">
+                    ⏳
+                  </span>
+                </button>
+
+                {/* Interactive Speech Bubble */}
+                <div
+                  onClick={handleMascotClick}
+                  className="relative flex-1 p-3.5 sm:p-4 rounded-2xl bg-gradient-to-br from-amber-950/80 to-[#0e0724] border border-amber-500/40 shadow-lg cursor-pointer hover:border-amber-300 transition-all group"
+                >
+                  {/* Triangle pointer */}
+                  <div className="absolute -left-2 top-6 w-3 h-3 bg-amber-950 border-l border-b border-amber-500/40 transform rotate-45 pointer-events-none" />
+
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-display font-bold text-xs text-amber-300 flex items-center gap-1.5">
+                      <span>Menti Tiempo te guía</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
+                    </span>
+                    <span className="text-[10px] text-slate-400 group-hover:text-amber-300 transition-colors flex items-center gap-1">
+                      <RefreshCw className="w-2.5 h-2.5" />
+                      Tocar
+                    </span>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-white font-medium italic leading-snug">
+                    "{MENTI_TIEMPO_DIALOGUES[dialogueIdx]}"
+                  </p>
                 </div>
-                <span className="p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/30">
-                  <Clock className="w-5 h-5 animate-pulse" />
+              </div>
+
+              {/* Timeline Header */}
+              <div className="flex items-center justify-between pb-3 mb-4">
+                <div>
+                  <h3 className="font-display font-bold text-base text-white">Simulador de Línea Temporal</h3>
+                  <p className="text-[11px] text-slate-400">Desafío de orden cronológico</p>
+                </div>
+                <span className="p-1.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/30">
+                  <Clock className="w-4 h-4 animate-pulse" />
                 </span>
               </div>
 
               {/* Vertical steps */}
-              <div className="space-y-4 relative before:absolute before:left-4 before:top-3 before:bottom-3 before:w-0.5 before:bg-gradient-to-b before:from-amber-500 before:via-purple-500 before:to-emerald-500 pl-8">
+              <div className="space-y-3 relative before:absolute before:left-4 before:top-3 before:bottom-3 before:w-0.5 before:bg-gradient-to-b before:from-amber-500 before:via-purple-500 before:to-emerald-500 pl-8">
                 {timelineSteps.map((step, idx) => (
                   <div key={idx} className="relative group">
                     {/* Step marker */}
@@ -134,8 +202,8 @@ export default function LineaDeTiempoSpotlight() {
                       <div className="w-1.5 h-1.5 rounded-full bg-amber-400" />
                     </div>
 
-                    <div className="p-3.5 rounded-xl bg-purple-950/30 border border-purple-900/30 hover:border-amber-500/40 transition-colors">
-                      <div className="flex items-center justify-between gap-2 mb-1">
+                    <div className="p-3 rounded-xl bg-purple-950/30 border border-purple-900/30 hover:border-amber-500/40 transition-colors">
+                      <div className="flex items-center justify-between gap-2 mb-0.5">
                         <span className="font-display font-bold text-xs text-white">
                           {step.era}
                         </span>
@@ -143,19 +211,19 @@ export default function LineaDeTiempoSpotlight() {
                           {step.year}
                         </span>
                       </div>
-                      <p className="text-xs text-slate-300 leading-snug">{step.event}</p>
+                      <p className="text-[11px] text-slate-300 leading-snug">{step.event}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
               {/* Bottom cover preview */}
-              <div className="mt-6 pt-6 border-t border-purple-900/40 flex items-center gap-4">
+              <div className="mt-5 pt-4 border-t border-purple-900/40 flex items-center gap-3">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/games/linea-de-tiempo.png"
                   alt="Línea de Tiempo Arte"
-                  className="w-14 h-14 rounded-xl object-cover border border-amber-500/40"
+                  className="w-12 h-12 rounded-xl object-cover border border-amber-500/40"
                 />
                 <div>
                   <div className="text-xs font-bold text-white">Diseño Visual Original</div>

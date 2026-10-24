@@ -74,7 +74,7 @@ export default function StudioAbout() {
               {/* Creator details */}
               <div className="space-y-3 mb-8 text-sm text-slate-300">
                 <div className="flex justify-between py-1.5 border-b border-purple-950">
-                  <span className="text-slate-400">Fundador & Desarrollador:</span>
+                  <span className="text-slate-400">Estudio Creador:</span>
                   <span className="font-semibold text-white">{STUDIO_INFO.founder}</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-purple-950">
