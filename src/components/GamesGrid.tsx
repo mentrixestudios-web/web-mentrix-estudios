@@ -18,7 +18,7 @@ import {
 export default function GamesGrid() {
   const [filter, setFilter] = useState<"all" | "available" | "coming_soon">("all");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTopic, setSelectedTopic] = useState("Nueva Mecánica o Idea");
+  const [selectedTopic, setSelectedTopic] = useState("Nuevas Categorías de Personajes");
   const [ideaText, setIdeaText] = useState("");
   const [senderName, setSenderName] = useState("");
   const [senderContact, setSenderContact] = useState("");
@@ -33,7 +33,8 @@ export default function GamesGrid() {
   });
 
   const handleOpenIdeaModal = (topic?: string) => {
-    if (topic) setSelectedTopic(topic);
+    setSelectedTopic(topic || "Nuevas Categorías de Personajes");
+    setIdeaText("");
     setSubmitted(false);
     setSendError("");
     setIsModalOpen(true);
@@ -208,17 +209,17 @@ export default function GamesGrid() {
                 <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-1">
                   <span className="text-xs text-slate-400 font-semibold mr-1 hidden sm:inline">Temas de interés:</span>
                   {[
-                    "💡 Nuevas Categorías de Personajes",
-                    "⏳ Hitos para Línea de Tiempo",
-                    "⚔️ Modos Competitivos 1v1",
-                    "🎭 Nuevos Trajes de Menti",
+                    { label: "💡 Nuevas Categorías", topic: "Nuevas Categorías de Personajes" },
+                    { label: "⏳ Hitos para Línea de Tiempo", topic: "Hitos para Línea de Tiempo" },
+                    { label: "⚔️ Modos Competitivos 1v1", topic: "Modos Competitivos y Multijugador" },
+                    { label: "🎭 Nuevos Trajes de Menti", topic: "Nuevos Trajes o Personalidad de Menti" },
                   ].map((chip) => (
                     <button
-                      key={chip}
-                      onClick={() => handleOpenIdeaModal(chip.slice(3))}
+                      key={chip.label}
+                      onClick={() => handleOpenIdeaModal(chip.topic)}
                       className="text-xs px-3 py-1 rounded-lg bg-purple-950/60 hover:bg-purple-900/80 border border-purple-800/50 hover:border-purple-600 text-purple-200 transition-colors cursor-pointer"
                     >
-                      {chip}
+                      {chip.label}
                     </button>
                   ))}
                 </div>
@@ -271,31 +272,24 @@ export default function GamesGrid() {
                 </div>
 
                 <h3 className="font-display font-extrabold text-2xl text-white">
-                  ¡Idea Recibida en la Incubadora!
+                  ¡Recibimos tu propuesta con éxito!
                 </h3>
 
                 <p className="text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
-                  Muchas gracias por tu creatividad. El equipo de <strong className="text-purple-300">Mentrix Estudios</strong> revisará tu propuesta en el próximo ciclo de diseño.
+                  Muchas gracias por colaborar con la comunidad. El equipo de <strong className="text-purple-300">Mentrix Estudios</strong> evaluará tu propuesta y, si dejaste tus datos, nos pondremos en contacto contigo para profundizar en ella.
                 </p>
 
-                <div className="p-4 rounded-2xl bg-purple-950/40 border border-purple-800/40 max-w-md mx-auto text-left text-xs text-slate-300 space-y-1">
-                  <p><strong className="text-amber-400">Tema:</strong> {selectedTopic}</p>
-                  <p><strong className="text-purple-400">Propuesta:</strong> {ideaText}</p>
+                <div className="p-4 rounded-2xl bg-purple-950/40 border border-purple-800/40 max-w-md mx-auto text-left text-xs text-slate-300 space-y-1.5">
+                  <p><strong className="text-amber-400">Categoría:</strong> {selectedTopic}</p>
+                  <p><strong className="text-purple-400">Tu Idea:</strong> {ideaText}</p>
                 </div>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
-                  <a
-                    href={getMailtoLink()}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs shadow-md transition-colors w-full sm:w-auto justify-center"
-                  >
-                    <Mail className="w-4 h-4" />
-                    <span>Enviar también como Correo</span>
-                  </a>
+                <div className="flex items-center justify-center pt-3">
                   <button
                     onClick={() => setIsModalOpen(false)}
-                    className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-semibold text-xs transition-colors w-full sm:w-auto"
+                    className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-xs transition-all shadow-md cursor-pointer"
                   >
-                    Cerrar
+                    Entendido, cerrar
                   </button>
                 </div>
               </div>
