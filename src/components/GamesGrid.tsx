@@ -23,6 +23,8 @@ export default function GamesGrid() {
   const [senderName, setSenderName] = useState("");
   const [senderContact, setSenderContact] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [sendError, setSendError] = useState("");
 
   const filteredGames = MENTRIX_GAMES.filter((game) => {
     if (filter === "available") return game.status === "available";
@@ -33,28 +35,47 @@ export default function GamesGrid() {
   const handleOpenIdeaModal = (topic?: string) => {
     if (topic) setSelectedTopic(topic);
     setSubmitted(false);
+    setSendError("");
     setIsModalOpen(true);
   };
 
-  const handleSubmitIdea = (e: React.FormEvent) => {
+  const handleSubmitIdea = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!ideaText.trim()) return;
+    if (!ideaText.trim() || isSending) return;
+
+    setIsSending(true);
+    setSendError("");
 
     try {
-      const stored = JSON.parse(localStorage.getItem("mentrix_user_ideas") || "[]");
-      stored.push({
-        topic: selectedTopic,
-        idea: ideaText,
-        name: senderName || "Anónimo",
-        contact: senderContact || "No especificado",
-        date: new Date().toISOString(),
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "a8f8548d-112c-4061-a70d-fb45d8dbcca7",
+          subject: `[Nueva Propuesta Mentrix] ${selectedTopic}`,
+          from_name: senderName || "Jugador Mentrix",
+          categoria: selectedTopic,
+          mensaje: ideaText,
+          nombre: senderName || "No especificado",
+          contacto_o_email: senderContact || "No especificado",
+        }),
       });
-      localStorage.setItem("mentrix_user_ideas", JSON.stringify(stored));
-    } catch {
-      // ignore storage errors
-    }
 
-    setSubmitted(true);
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        setSendError(result.message || "No se pudo enviar la propuesta. Intenta de nuevo.");
+      }
+    } catch {
+      setSendError("Error de conexión al enviar. Puedes enviarla por correo directo.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const getMailtoLink = () => {
@@ -357,6 +378,12 @@ export default function GamesGrid() {
                   </div>
                 </div>
 
+                {sendError && (
+                  <div className="p-3 rounded-xl bg-rose-950/60 border border-rose-600/40 text-xs text-rose-300">
+                    {sendError}
+                  </div>
+                )}
+
                 <div className="pt-2 flex items-center justify-end gap-3">
                   <button
                     type="button"
@@ -367,10 +394,11 @@ export default function GamesGrid() {
                   </button>
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs shadow-lg shadow-amber-500/20 transition-all cursor-pointer"
+                    disabled={isSending}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 disabled:opacity-50 disabled:cursor-not-allowed text-slate-950 font-bold text-xs shadow-lg shadow-amber-500/20 transition-all cursor-pointer"
                   >
-                    <Send className="w-3.5 h-3.5" />
-                    <span>Enviar Propuesta al Estudio</span>
+                    <Send className={`w-3.5 h-3.5 ${isSending ? "animate-pulse" : ""}`} />
+                    <span>{isSending ? "Enviando a Mentrix..." : "Enviar Propuesta al Estudio"}</span>
                   </button>
                 </div>
               </form>
