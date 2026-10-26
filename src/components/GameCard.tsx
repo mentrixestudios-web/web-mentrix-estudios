@@ -131,7 +131,20 @@ export default function GameCard({ game }: GameCardProps) {
           </div>
 
           {/* Action Button */}
-          <div className="w-full sm:w-auto flex items-center gap-2">
+          <div className="w-full sm:w-auto flex flex-wrap items-center gap-2">
+            {game.downloads?.webAppUrl && (
+              <a
+                href={game.downloads.webAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-cyan-950/60 hover:bg-cyan-900/70 border border-cyan-500/50 hover:border-cyan-400 text-cyan-200 hover:text-white font-bold text-xs uppercase tracking-wider transition-all"
+                title="Abrir o instalar versión Web PWA sin tiendas"
+              >
+                <Globe className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Web PWA</span>
+              </a>
+            )}
+
             {isAvailable ? (
               <a
                 href={game.downloads?.playStoreUrl || game.downloads?.apkUrl || "#"}

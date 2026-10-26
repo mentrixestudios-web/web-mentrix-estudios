@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { BookOpen, Sparkles, Heart, Shield, Award, CheckCircle2, Download, RefreshCw, Sun, Compass, ExternalLink } from "lucide-react";
+import { BookOpen, Sparkles, Heart, Shield, Award, CheckCircle2, Download, RefreshCw, Sun, Compass, ExternalLink, Globe, HelpCircle, Zap, Smartphone } from "lucide-react";
+import PwaInstallModal from "./PwaInstallModal";
 
 interface BiblicalQuestion {
   category: string;
@@ -53,6 +54,7 @@ export default function EstudioBiblicoSpotlight() {
   const [bouncing, setBouncing] = useState(false);
   const [questionIdx, setQuestionIdx] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [isPwaModalOpen, setIsPwaModalOpen] = useState(false);
 
   const currentQ = BIBLICAL_QUESTIONS[questionIdx];
 
@@ -140,24 +142,50 @@ export default function EstudioBiblicoSpotlight() {
             </div>
 
             {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <a
+                href="https://mentrix-estudio-biblico.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 via-indigo-500 to-purple-600 hover:from-cyan-300 hover:to-purple-500 text-white font-extrabold text-sm shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+              >
+                <Globe className="w-4 h-4 text-cyan-200" />
+                <span>Abrir / Instalar Web App</span>
+              </a>
+
+              <button
+                onClick={() => setIsPwaModalOpen(true)}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-purple-950/50 hover:bg-purple-900/60 border border-purple-700/50 hover:border-cyan-400 text-cyan-200 hover:text-white font-semibold text-xs sm:text-sm transition-all cursor-pointer"
+              >
+                <HelpCircle className="w-4 h-4 text-cyan-400" />
+                <span>¿Cómo instalar en celular/PC?</span>
+              </button>
+
               <a
                 href="https://play.google.com/store/apps/details?id=com.mentrix.biblia&pcampaignid=web_share"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-bold text-sm shadow-lg shadow-cyan-600/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-3.5 rounded-xl bg-purple-950/30 hover:bg-purple-900/40 border border-purple-800/50 text-slate-300 hover:text-white text-xs font-semibold transition-all"
               >
-                <Download className="w-4 h-4" />
-                <span>Descargar en Google Play</span>
+                <Download className="w-3.5 h-3.5 text-purple-400" />
+                <span>Google Play</span>
               </a>
+            </div>
 
-              <a
-                href="#descargas"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-purple-950/40 hover:bg-purple-900/50 border border-purple-700/50 hover:border-cyan-400 text-slate-200 hover:text-white font-semibold text-sm transition-all"
-              >
-                <Sparkles className="w-4 h-4 text-cyan-400" />
-                <span>Zona de Descargas</span>
-              </a>
+            {/* PWA Feature Badges */}
+            <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] text-slate-300">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-950/50 border border-cyan-800/50 text-cyan-300">
+                <Globe className="w-3 h-3 text-cyan-400" />
+                Disponible en Web
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-purple-950/50 border border-purple-800/50 text-purple-300">
+                <Smartphone className="w-3 h-3 text-purple-400" />
+                Instalable en Android, iOS y PC
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-950/50 border border-emerald-800/50 text-emerald-300">
+                <Zap className="w-3 h-3 text-emerald-400" />
+                Funciona Sin Conexión (Offline)
+              </span>
             </div>
           </div>
 
@@ -299,6 +327,13 @@ export default function EstudioBiblicoSpotlight() {
           </div>
         </div>
       </div>
+
+      {/* Interactive PWA Installation Tutorial Modal */}
+      <PwaInstallModal
+        isOpen={isPwaModalOpen}
+        onClose={() => setIsPwaModalOpen(false)}
+        appUrl="https://mentrix-estudio-biblico.vercel.app"
+      />
     </section>
   );
 }

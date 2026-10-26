@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
   Download,
   Smartphone,
@@ -12,9 +12,16 @@ import {
   Clock,
   Star,
   ArrowRight,
+  Globe,
+  HelpCircle,
+  Laptop,
+  Zap,
 } from "lucide-react";
+import PwaInstallModal from "./PwaInstallModal";
 
 export default function DescargasSection() {
+  const [isPwaModalOpen, setIsPwaModalOpen] = useState(false);
+
   const games = [
     {
       id: "mqem",
@@ -48,7 +55,7 @@ export default function DescargasSection() {
       id: "estudio-biblico",
       title: "Mentrix: Estudio Bíblico",
       tagline: "Aprende, memoriza y profundiza en las Sagradas Escrituras.",
-      version: "v1.0.4 · Edición Especial",
+      version: "v1.0.4 · PWA & Google Play",
       rating: "5.0",
       category: "Educación & Fe",
       accent: "from-cyan-500 via-indigo-600 to-purple-600",
@@ -59,17 +66,18 @@ export default function DescargasSection() {
       mascotThumb: "/mascota-menti-biblia.png",
       playStoreUrl:
         "https://play.google.com/store/apps/details?id=com.mentrix.biblia&pcampaignid=web_share",
+      webAppUrl: "https://mentrix-estudio-biblico.vercel.app",
       spotlightHref: "#estudio-biblico",
       specs: [
-        { label: "Plataforma", val: "Android 8.0 o superior" },
-        { label: "Conexión", val: "100% Offline (Sin internet)" },
-        { label: "Precio", val: "Gratis en Google Play" },
-        { label: "Contenido", val: "12 Categorías / Citas Bíblicas" },
+        { label: "Plataforma", val: "Web PWA, Android, iOS & PC" },
+        { label: "Conexión", val: "100% Offline (Con Caché)" },
+        { label: "Instalación", val: "Directa sin tiendas o Google Play" },
+        { label: "Contenido", val: "12 Categorías / Citas RVR1960" },
       ],
       highlights: [
         "12 categorías temáticas estructuradas por libros y personajes",
         "Referencias cruzadas con respaldo bíblico Reina-Valera",
-        "Modo estudio para familias, escuelas y grupos de jóvenes",
+        "365 devocionales diarios y Plan de Lectura Anual",
       ],
     },
   ];
@@ -83,7 +91,7 @@ export default function DescargasSection() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-950/70 border border-purple-700/50 text-purple-300 text-xs sm:text-sm font-semibold mb-4 shadow-inner backdrop-blur-md">
             <Smartphone className="w-4 h-4 text-cyan-400" />
             <span>Zona de Descargas Oficial</span>
@@ -91,13 +99,99 @@ export default function DescargasSection() {
           </div>
 
           <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-white tracking-tight mb-4">
-            Descarga Nuestros Juegos en{" "}
-            <span className="text-gradient-purple">Google Play</span>
+            Descarga y Juega en{" "}
+            <span className="text-gradient-purple">Google Play & Web PWA</span>
           </h2>
 
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
-            Instala gratis las aplicaciones oficiales de <strong className="text-white">Mentrix Estudios</strong> directamente desde la tienda de Google Play. Disfruta de partidas 100% offline, seguras y diseñadas para ejercitar tu mente.
+            Instala gratis las aplicaciones oficiales de <strong className="text-white">Mentrix Estudios</strong> directamente en Google Play Store o ejecútalas al instante desde tu navegador en Android, iOS y PC como aplicación nativa.
           </p>
+        </div>
+
+        {/* Featured PWA Showcase Card: Mentrix Biblia Interactiva */}
+        <div className="mb-14 rounded-3xl border-2 border-cyan-500/50 bg-gradient-to-r from-[#140c36] via-[#0d1633] to-[#0a182d] p-6 sm:p-8 lg:p-10 shadow-2xl shadow-cyan-950/40 relative overflow-hidden group">
+          {/* Ambient Glows */}
+          <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+            {/* Left: Mascot & Pitch */}
+            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 flex-1">
+              <div className="relative shrink-0">
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-cyan-400/20 via-purple-600/30 to-indigo-900 border border-cyan-400/50 p-2 shadow-xl shadow-cyan-500/20 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/mascota-menti-biblia.png"
+                    alt="Menti Biblia PWA"
+                    className="w-full h-full object-contain filter drop-shadow-[0_6px_12px_rgba(0,0,0,0.6)]"
+                  />
+                  <div className="absolute -top-2 -right-2 px-2 py-0.5 rounded-full bg-cyan-400 text-slate-950 text-[10px] font-black uppercase tracking-wider shadow">
+                    Web App
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-2.5 max-w-2xl">
+                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 text-xs font-bold uppercase tracking-wider">
+                    <Globe className="w-3.5 h-3.5" />
+                    🌐 Disponible en Web
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300 text-xs font-bold uppercase tracking-wider">
+                    📲 Instalable en Android, iOS y PC
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+                    ⚡ Funciona Sin Conexión (Offline)
+                  </span>
+                </div>
+
+                <h3 className="font-display font-black text-2xl sm:text-3xl text-white tracking-tight">
+                  Mentrix Biblia Interactiva <span className="text-cyan-400">(PWA Web)</span>
+                </h3>
+
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                  "Aprende la Biblia jugando, lee el plan anual, reflexiona cada día y desafía tu mente. ¡Ahora disponible directamente en tu navegador!"
+                </p>
+
+                {/* Features Highlights */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1 text-xs text-slate-300">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                    <span>Diseño inteligente para celular y PC</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                    <span>365 devocionales y plan RVR1960</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                    <span>Ultraliviana y sin tiendas</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Action Buttons */}
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full sm:w-auto shrink-0 justify-center">
+              <a
+                href="https://mentrix-estudio-biblico.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-400 via-indigo-500 to-purple-600 hover:from-cyan-300 hover:to-purple-500 text-white font-extrabold text-sm tracking-wide shadow-xl shadow-cyan-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer text-center"
+              >
+                <span>Abrir / Instalar Aplicación</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+
+              <button
+                onClick={() => setIsPwaModalOpen(true)}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-purple-950/60 hover:bg-purple-900/70 border border-purple-700/50 hover:border-cyan-400 text-cyan-200 hover:text-white font-semibold text-xs tracking-wide transition-all text-center cursor-pointer"
+              >
+                <HelpCircle className="w-3.5 h-3.5 text-cyan-400" />
+                <span>¿Cómo instalar en Android, iOS o PC?</span>
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Available Games Download Cards */}
@@ -170,53 +264,79 @@ export default function DescargasSection() {
                 ))}
               </div>
 
-              {/* Action Buttons: Play Store Button + Spotlight Link */}
+              {/* Action Buttons: Play Store Button + PWA / Spotlight Links */}
               <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-purple-900/40">
-                {/* Official Google Play Store Button */}
-                <a
-                  href={g.playStoreUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:flex-1 inline-flex items-center justify-center gap-3 px-5 py-3 rounded-2xl bg-slate-950 hover:bg-slate-900 border-2 border-purple-500/50 hover:border-cyan-400 text-white font-bold transition-all shadow-xl hover:shadow-cyan-500/20 group/btn"
-                >
-                  {/* Google Play Triangle SVG */}
-                  <svg className="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M3.609 1.813L13.792 12 3.61 22.187C3.262 21.824 3 21.286 3 20.61V3.39c0-.676.262-1.214.609-1.577z"
-                      fill="#00E5FF"
-                    />
-                    <path
-                      d="M17.217 8.577L13.792 12l3.425 3.423 3.864-2.213c1.107-.633 1.107-1.666 0-2.3L17.217 8.577z"
-                      fill="#FFD600"
-                    />
-                    <path
-                      d="M3.609 1.813l10.183 10.187 3.425-3.423L6.038.749C5.031.173 4.148.455 3.61 1.813z"
-                      fill="#00E676"
-                    />
-                    <path
-                      d="M17.217 15.423l-3.425-3.423L3.61 22.187c.538 1.358 1.42 1.64 2.428 1.064l11.179-6.828z"
-                      fill="#FF1744"
-                    />
-                  </svg>
-                  <div className="text-left leading-tight">
-                    <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
-                      Disponible en
-                    </div>
-                    <div className="text-sm sm:text-base font-extrabold text-white tracking-wide">
-                      Google Play
-                    </div>
-                  </div>
-                  <ExternalLink className="w-4 h-4 text-slate-400 group-hover/btn:text-cyan-400 ml-auto" />
-                </a>
+                {g.webAppUrl ? (
+                  /* Double CTA: Web PWA + Google Play */
+                  <>
+                    <a
+                      href={g.webAppUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-cyan-400 to-indigo-600 hover:from-cyan-300 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/20 transition-all text-center"
+                    >
+                      <Globe className="w-4 h-4 text-cyan-200" />
+                      <span>Abrir Web PWA</span>
+                    </a>
 
-                {/* Secondary Pill Button */}
-                <a
-                  href={g.spotlightHref}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-2xl bg-purple-950/50 hover:bg-purple-900/60 border border-purple-800/60 text-purple-300 hover:text-white text-xs font-semibold transition-colors"
-                >
-                  <span>Ver Demo</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </a>
+                    <a
+                      href={g.playStoreUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-slate-950 hover:bg-slate-900 border border-purple-500/50 hover:border-cyan-400 text-slate-200 hover:text-white font-bold text-xs transition-all"
+                    >
+                      <Download className="w-3.5 h-3.5 text-cyan-300" />
+                      <span>Google Play</span>
+                    </a>
+                  </>
+                ) : (
+                  /* Single Play Store Button for MQEM */
+                  <>
+                    <a
+                      href={g.playStoreUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:flex-1 inline-flex items-center justify-center gap-3 px-5 py-3 rounded-2xl bg-slate-950 hover:bg-slate-900 border-2 border-purple-500/50 hover:border-cyan-400 text-white font-bold transition-all shadow-xl hover:shadow-cyan-500/20 group/btn"
+                    >
+                      {/* Google Play Triangle SVG */}
+                      <svg className="w-6 h-6 shrink-0" viewBox="0 0 24 24" fill="none">
+                        <path
+                          d="M3.609 1.813L13.792 12 3.61 22.187C3.262 21.824 3 21.286 3 20.61V3.39c0-.676.262-1.214.609-1.577z"
+                          fill="#00E5FF"
+                        />
+                        <path
+                          d="M17.217 8.577L13.792 12l3.425 3.423 3.864-2.213c1.107-.633 1.107-1.666 0-2.3L17.217 8.577z"
+                          fill="#FFD600"
+                        />
+                        <path
+                          d="M3.609 1.813l10.183 10.187 3.425-3.423L6.038.749C5.031.173 4.148.455 3.61 1.813z"
+                          fill="#00E676"
+                        />
+                        <path
+                          d="M17.217 15.423l-3.425-3.423L3.61 22.187c.538 1.358 1.42 1.64 2.428 1.064l11.179-6.828z"
+                          fill="#FF1744"
+                        />
+                      </svg>
+                      <div className="text-left leading-tight">
+                        <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
+                          Disponible en
+                        </div>
+                        <div className="text-sm sm:text-base font-extrabold text-white tracking-wide">
+                          Google Play
+                        </div>
+                      </div>
+                      <ExternalLink className="w-4 h-4 text-slate-400 group-hover/btn:text-cyan-400 ml-auto" />
+                    </a>
+
+                    <a
+                      href={g.spotlightHref}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-2xl bg-purple-950/50 hover:bg-purple-900/60 border border-purple-800/60 text-purple-300 hover:text-white text-xs font-semibold transition-colors"
+                    >
+                      <span>Ver Demo</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </a>
+                  </>
+                )}
               </div>
             </div>
           ))}
@@ -261,8 +381,8 @@ export default function DescargasSection() {
           <div className="flex items-center justify-center sm:justify-start gap-3 p-3 rounded-xl bg-purple-950/20 border border-purple-900/30">
             <ShieldCheck className="w-6 h-6 text-emerald-400 shrink-0" />
             <div>
-              <div className="text-xs font-bold text-white">Google Play Protect</div>
-              <div className="text-[11px] text-slate-400">Verificado y libre de software malicioso</div>
+              <div className="text-xs font-bold text-white">Google Play Protect & Web PWA</div>
+              <div className="text-[11px] text-slate-400">Verificado, seguro y sin descargas invasivas</div>
             </div>
           </div>
 
@@ -278,11 +398,18 @@ export default function DescargasSection() {
             <Sparkles className="w-6 h-6 text-amber-400 shrink-0" />
             <div>
               <div className="text-xs font-bold text-white">Actualizaciones Gratuitas</div>
-              <div className="text-[11px] text-slate-400">Nuevos personajes y modos continuos</div>
+              <div className="text-[11px] text-slate-400">Nuevos personajes, devocionales y modos continuos</div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Interactive PWA Installation Tutorial Modal */}
+      <PwaInstallModal
+        isOpen={isPwaModalOpen}
+        onClose={() => setIsPwaModalOpen(false)}
+        appUrl="https://mentrix-estudio-biblico.vercel.app"
+      />
     </section>
   );
 }

@@ -26,6 +26,7 @@ export interface GameItem {
     playStoreUrl?: string;
     apkUrl?: string;
     webDemoUrl?: string;
+    webAppUrl?: string;
   };
   highlight?: boolean;
 }
