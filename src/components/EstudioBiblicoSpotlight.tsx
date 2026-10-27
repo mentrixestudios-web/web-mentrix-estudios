@@ -332,6 +332,7 @@ export default function EstudioBiblicoSpotlight() {
       <PwaInstallModal
         isOpen={isPwaModalOpen}
         onClose={() => setIsPwaModalOpen(false)}
+        gameId="biblia"
         appUrl="https://mentrix-estudio-biblico.vercel.app"
       />
     </section>

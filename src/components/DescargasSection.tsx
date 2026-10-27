@@ -16,18 +16,22 @@ import {
   HelpCircle,
   Laptop,
   Zap,
+  Brain,
+  BookOpen,
 } from "lucide-react";
-import PwaInstallModal from "./PwaInstallModal";
+import PwaInstallModal, { PwaGameId } from "./PwaInstallModal";
 
 export default function DescargasSection() {
   const [isPwaModalOpen, setIsPwaModalOpen] = useState(false);
+  const [selectedPwaModalGame, setSelectedPwaModalGame] = useState<PwaGameId>("mqem");
+  const [featuredPwa, setFeaturedPwa] = useState<PwaGameId>("mqem");
 
   const games = [
     {
       id: "mqem",
       title: "Mentrix: ¿Quién está en mi mente?",
       tagline: "El juego definitivo de deducción psicológica y pistas estratégicas.",
-      version: "v1.2.0 · Oficial",
+      version: "v1.2.0 · PWA & Google Play",
       rating: "4.9",
       category: "Deducción & Trivia",
       accent: "from-purple-600 via-indigo-600 to-cyan-500",
@@ -38,11 +42,12 @@ export default function DescargasSection() {
       mascotThumb: "/mascota-menti-original.png",
       playStoreUrl:
         "https://play.google.com/store/apps/details?id=com.mentrix.quienestaenmente&pcampaignid=web_share",
+      webAppUrl: "https://mentrix-mind-game.vercel.app",
       spotlightHref: "#mqem",
       specs: [
-        { label: "Plataforma", val: "Android 8.0 o superior" },
-        { label: "Conexión", val: "100% Offline (Sin internet)" },
-        { label: "Precio", val: "Gratis en Google Play" },
+        { label: "Plataforma", val: "Web PWA, Android, iOS & PC" },
+        { label: "Conexión", val: "100% Offline (Con Caché)" },
+        { label: "Instalación", val: "Directa sin tiendas o Google Play" },
         { label: "Contenido", val: "210+ Personajes / 7 Categorías" },
       ],
       highlights: [
@@ -108,90 +113,220 @@ export default function DescargasSection() {
           </p>
         </div>
 
-        {/* Featured PWA Showcase Card: Mentrix Biblia Interactiva */}
-        <div className="mb-14 rounded-3xl border-2 border-cyan-500/50 bg-gradient-to-r from-[#140c36] via-[#0d1633] to-[#0a182d] p-6 sm:p-8 lg:p-10 shadow-2xl shadow-cyan-950/40 relative overflow-hidden group">
+        {/* Featured PWA Showcase Card: Switcher between MQEM and Biblia */}
+        <div
+          className={`mb-14 rounded-3xl border-2 ${
+            featuredPwa === "mqem" ? "border-purple-500/50" : "border-cyan-500/50"
+          } bg-gradient-to-r from-[#140c36] via-[#0d1633] to-[#0a182d] p-6 sm:p-8 lg:p-10 shadow-2xl shadow-cyan-950/40 relative overflow-hidden group transition-all`}
+        >
           {/* Ambient Glows */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
-            {/* Left: Mascot & Pitch */}
-            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 flex-1">
-              <div className="relative shrink-0">
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-cyan-400/20 via-purple-600/30 to-indigo-900 border border-cyan-400/50 p-2 shadow-xl shadow-cyan-500/20 flex items-center justify-center group-hover:scale-105 transition-transform">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/mascota-menti-biblia.png"
-                    alt="Menti Biblia PWA"
-                    className="w-full h-full object-contain filter drop-shadow-[0_6px_12px_rgba(0,0,0,0.6)]"
-                  />
-                  <div className="absolute -top-2 -right-2 px-2 py-0.5 rounded-full bg-cyan-400 text-slate-950 text-[10px] font-black uppercase tracking-wider shadow">
-                    Web App
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-2.5 max-w-2xl">
-                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 text-xs font-bold uppercase tracking-wider">
-                    <Globe className="w-3.5 h-3.5" />
-                    🌐 Disponible en Web
-                  </span>
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300 text-xs font-bold uppercase tracking-wider">
-                    📲 Instalable en Android, iOS y PC
-                  </span>
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold uppercase tracking-wider">
-                    ⚡ Funciona Sin Conexión (Offline)
-                  </span>
-                </div>
-
-                <h3 className="font-display font-black text-2xl sm:text-3xl text-white tracking-tight">
-                  Mentrix Biblia Interactiva <span className="text-cyan-400">(PWA Web)</span>
-                </h3>
-
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                  "Aprende la Biblia jugando, lee el plan anual, reflexiona cada día y desafía tu mente. ¡Ahora disponible directamente en tu navegador!"
-                </p>
-
-                {/* Features Highlights */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1 text-xs text-slate-300">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                    <span>Diseño inteligente para celular y PC</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                    <span>365 devocionales y plan RVR1960</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                    <span>Ultraliviana y sin tiendas</span>
-                  </div>
-                </div>
-              </div>
+          {/* Game Switcher Tabs */}
+          <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 pb-6 mb-6 border-b border-purple-900/40">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                Selecciona la Web App destacada:
+              </span>
             </div>
 
-            {/* Right: Action Buttons */}
-            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full sm:w-auto shrink-0 justify-center">
-              <a
-                href="https://mentrix-estudio-biblico.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-400 via-indigo-500 to-purple-600 hover:from-cyan-300 hover:to-purple-500 text-white font-extrabold text-sm tracking-wide shadow-xl shadow-cyan-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer text-center"
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setFeaturedPwa("mqem")}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  featuredPwa === "mqem"
+                    ? "bg-purple-600 text-white shadow-lg shadow-purple-600/40 border border-purple-400/50 scale-105"
+                    : "bg-purple-950/50 text-slate-300 hover:text-white border border-purple-800/40"
+                }`}
               >
-                <span>Abrir / Instalar Aplicación</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
+                <Brain className="w-3.5 h-3.5" />
+                <span>¿Quién está en mi mente?</span>
+                <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-purple-400/30 text-purple-200">PWA</span>
+              </button>
 
               <button
-                onClick={() => setIsPwaModalOpen(true)}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-purple-950/60 hover:bg-purple-900/70 border border-purple-700/50 hover:border-cyan-400 text-cyan-200 hover:text-white font-semibold text-xs tracking-wide transition-all text-center cursor-pointer"
+                onClick={() => setFeaturedPwa("biblia")}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  featuredPwa === "biblia"
+                    ? "bg-cyan-600 text-white shadow-lg shadow-cyan-600/40 border border-cyan-400/50 scale-105"
+                    : "bg-purple-950/50 text-slate-300 hover:text-white border border-purple-800/40"
+                }`}
               >
-                <HelpCircle className="w-3.5 h-3.5 text-cyan-400" />
-                <span>¿Cómo instalar en Android, iOS o PC?</span>
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>Estudio Bíblico</span>
+                <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-cyan-400/30 text-cyan-200">PWA</span>
               </button>
             </div>
           </div>
+
+          {featuredPwa === "mqem" ? (
+            /* MQEM Showcase */
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 animate-fadeIn">
+              {/* Left: Mascot & Pitch */}
+              <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 flex-1">
+                <div className="relative shrink-0">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-purple-600/30 via-indigo-900 to-slate-900 border border-purple-400/50 p-2 shadow-xl shadow-purple-500/20 flex items-center justify-center group-hover:scale-105 transition-transform">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/mascota-menti-original.png"
+                      alt="Menti Original PWA"
+                      className="w-full h-full object-contain filter drop-shadow-[0_6px_12px_rgba(0,0,0,0.6)]"
+                    />
+                    <div className="absolute -top-2 -right-2 px-2 py-0.5 rounded-full bg-purple-400 text-slate-950 text-[10px] font-black uppercase tracking-wider shadow">
+                      Web App
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-2.5 max-w-2xl">
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/20 border border-purple-400/50 text-purple-300 text-xs font-bold uppercase tracking-wider">
+                      <Globe className="w-3.5 h-3.5" />
+                      🌐 Disponible en Web
+                    </span>
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 text-xs font-bold uppercase tracking-wider">
+                      📲 Instalable en Android, iOS y PC
+                    </span>
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+                      ⚡ Funciona Sin Conexión (Offline)
+                    </span>
+                  </div>
+
+                  <h3 className="font-display font-black text-2xl sm:text-3xl text-white tracking-tight">
+                    Mentrix: ¿Quién está en mi mente? <span className="text-purple-400">(PWA Web)</span>
+                  </h3>
+
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    "Adivina el personaje secreto antes de que se acaben tus preguntas. Desbloquea pistas con monedas y pon a prueba tu conocimiento. ¡Ahora disponible directamente en tu navegador!"
+                  </p>
+
+                  {/* Features Highlights */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1 text-xs text-slate-300">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0" />
+                      <span>Diseño inteligente para celular y PC</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0" />
+                      <span>210+ personajes en 7 categorías</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0" />
+                      <span>Ultraliviana y sin tiendas</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Action Buttons */}
+              <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full sm:w-auto shrink-0 justify-center">
+                <a
+                  href="https://mentrix-mind-game.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-400 hover:from-purple-400 hover:to-cyan-300 text-white font-extrabold text-sm tracking-wide shadow-xl shadow-purple-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer text-center"
+                >
+                  <span>Abrir / Instalar Aplicación</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+
+                <button
+                  onClick={() => {
+                    setSelectedPwaModalGame("mqem");
+                    setIsPwaModalOpen(true);
+                  }}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-purple-950/60 hover:bg-purple-900/70 border border-purple-700/50 hover:border-cyan-400 text-purple-200 hover:text-white font-semibold text-xs tracking-wide transition-all text-center cursor-pointer"
+                >
+                  <HelpCircle className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>¿Cómo instalar en Android, iOS o PC?</span>
+                </button>
+              </div>
+            </div>
+          ) : (
+            /* Biblia Showcase */
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 animate-fadeIn">
+              {/* Left: Mascot & Pitch */}
+              <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 flex-1">
+                <div className="relative shrink-0">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-cyan-400/20 via-purple-600/30 to-indigo-900 border border-cyan-400/50 p-2 shadow-xl shadow-cyan-500/20 flex items-center justify-center group-hover:scale-105 transition-transform">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/mascota-menti-biblia.png"
+                      alt="Menti Biblia PWA"
+                      className="w-full h-full object-contain filter drop-shadow-[0_6px_12px_rgba(0,0,0,0.6)]"
+                    />
+                    <div className="absolute -top-2 -right-2 px-2 py-0.5 rounded-full bg-cyan-400 text-slate-950 text-[10px] font-black uppercase tracking-wider shadow">
+                      Web App
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-2.5 max-w-2xl">
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 text-xs font-bold uppercase tracking-wider">
+                      <Globe className="w-3.5 h-3.5" />
+                      🌐 Disponible en Web
+                    </span>
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300 text-xs font-bold uppercase tracking-wider">
+                      📲 Instalable en Android, iOS y PC
+                    </span>
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+                      ⚡ Funciona Sin Conexión (Offline)
+                    </span>
+                  </div>
+
+                  <h3 className="font-display font-black text-2xl sm:text-3xl text-white tracking-tight">
+                    Mentrix Biblia Interactiva <span className="text-cyan-400">(PWA Web)</span>
+                  </h3>
+
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    "Aprende la Biblia jugando, lee el plan anual, reflexiona cada día y desafía tu mente. ¡Ahora disponible directamente en tu navegador!"
+                  </p>
+
+                  {/* Features Highlights */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1 text-xs text-slate-300">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                      <span>Diseño inteligente para celular y PC</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                      <span>365 devocionales y plan RVR1960</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                      <span>Ultraliviana y sin tiendas</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Action Buttons */}
+              <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full sm:w-auto shrink-0 justify-center">
+                <a
+                  href="https://mentrix-estudio-biblico.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-400 via-indigo-500 to-purple-600 hover:from-cyan-300 hover:to-purple-500 text-white font-extrabold text-sm tracking-wide shadow-xl shadow-cyan-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer text-center"
+                >
+                  <span>Abrir / Instalar Aplicación</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+
+                <button
+                  onClick={() => {
+                    setSelectedPwaModalGame("biblia");
+                    setIsPwaModalOpen(true);
+                  }}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-purple-950/60 hover:bg-purple-900/70 border border-purple-700/50 hover:border-cyan-400 text-cyan-200 hover:text-white font-semibold text-xs tracking-wide transition-all text-center cursor-pointer"
+                >
+                  <HelpCircle className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>¿Cómo instalar en Android, iOS o PC?</span>
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Available Games Download Cards */}
@@ -265,30 +400,43 @@ export default function DescargasSection() {
               </div>
 
               {/* Action Buttons: Play Store Button + PWA / Spotlight Links */}
-              <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-purple-900/40">
+              <div className="pt-4 border-t border-purple-900/40">
                 {g.webAppUrl ? (
-                  /* Double CTA: Web PWA + Google Play */
-                  <>
-                    <a
-                      href={g.webAppUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-cyan-400 to-indigo-600 hover:from-cyan-300 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/20 transition-all text-center"
-                    >
-                      <Globe className="w-4 h-4 text-cyan-200" />
-                      <span>Abrir Web PWA</span>
-                    </a>
+                  /* Double CTA: Web PWA + Google Play + Install guide */
+                  <div className="w-full space-y-2.5">
+                    <div className="flex flex-col sm:flex-row items-center gap-3">
+                      <a
+                        href={g.webAppUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-cyan-400 to-indigo-600 hover:from-cyan-300 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/20 transition-all text-center cursor-pointer"
+                      >
+                        <Globe className="w-4 h-4 text-cyan-200" />
+                        <span>Abrir Web PWA</span>
+                      </a>
 
-                    <a
-                      href={g.playStoreUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-slate-950 hover:bg-slate-900 border border-purple-500/50 hover:border-cyan-400 text-slate-200 hover:text-white font-bold text-xs transition-all"
+                      <a
+                        href={g.playStoreUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-slate-950 hover:bg-slate-900 border border-purple-500/50 hover:border-cyan-400 text-slate-200 hover:text-white font-bold text-xs transition-all"
+                      >
+                        <Download className="w-3.5 h-3.5 text-cyan-300" />
+                        <span>Google Play</span>
+                      </a>
+                    </div>
+
+                    <button
+                      onClick={() => {
+                        setSelectedPwaModalGame(g.id === "mqem" ? "mqem" : "biblia");
+                        setIsPwaModalOpen(true);
+                      }}
+                      className="w-full py-2 px-3 rounded-xl bg-purple-950/30 hover:bg-purple-900/40 border border-purple-800/40 hover:border-cyan-400/50 text-cyan-200 hover:text-white text-[11px] font-semibold transition-all inline-flex items-center justify-center gap-1.5 cursor-pointer"
                     >
-                      <Download className="w-3.5 h-3.5 text-cyan-300" />
-                      <span>Google Play</span>
-                    </a>
-                  </>
+                      <HelpCircle className="w-3.5 h-3.5 text-cyan-400" />
+                      <span>¿Cómo instalar {g.id === "mqem" ? "Menti Mind" : "Menti Biblia"} en tu pantalla?</span>
+                    </button>
+                  </div>
                 ) : (
                   /* Single Play Store Button for MQEM */
                   <>
@@ -408,7 +556,7 @@ export default function DescargasSection() {
       <PwaInstallModal
         isOpen={isPwaModalOpen}
         onClose={() => setIsPwaModalOpen(false)}
-        appUrl="https://mentrix-estudio-biblico.vercel.app"
+        gameId={selectedPwaModalGame}
       />
     </section>
   );

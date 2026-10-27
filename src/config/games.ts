@@ -9,7 +9,7 @@ export const MENTRIX_GAMES: GameItem[] = [
     description:
       "Adivina el personaje secreto antes de que se acaben tus preguntas. Desbloquea pistas con monedas, formula preguntas clave y pon a prueba tu conocimiento con más de 210 personajes históricos, culturales y del entretenimiento en 7 categorías únicas.",
     status: "available",
-    statusBadge: "Disponible en Android",
+    statusBadge: "PWA Web & Google Play",
     category: "Deducción & Trivia",
     badgeAccent: "purple",
     coverImage: "/games/mind-game-splash.png",
