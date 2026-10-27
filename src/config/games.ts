@@ -14,7 +14,7 @@ export const MENTRIX_GAMES: GameItem[] = [
     badgeAccent: "purple",
     coverImage: "/games/mind-game-splash.png",
     mascotImage: "/mentrix-mascot.webp",
-    platforms: ["android"],
+    platforms: ["android", "web", "ios"],
     highlight: true,
     features: [
       "210 personajes únicos organizados en 7 categorías",
@@ -22,17 +22,18 @@ export const MENTRIX_GAMES: GameItem[] = [
       "Múltiples modos: Desafío Diario, Contrarreloj, Supervivencia y Fiesta",
       "Creador de personajes personalizados",
       "Economía interna con monedas y tienda de recompensas",
-      "Juego local 100% offline sin necesidad de conexión obligatoria",
+      "Juego local 100% offline y PWA instalable sin tiendas",
     ],
     stats: [
       { value: "210+", label: "Personajes" },
       { value: "7", label: "Categorías" },
-      { value: "6", label: "Modos de juego" },
+      { value: "PWA Web", label: "Instalable" },
       { value: "Offline", label: "Modo local" },
     ],
     downloads: {
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.mentrix.quienestaenmente&pcampaignid=web_share",
       apkUrl: "https://play.google.com/store/apps/details?id=com.mentrix.quienestaenmente&pcampaignid=web_share",
+      webAppUrl: "https://mentrix-mind-game.vercel.app",
     },
   },
   {
