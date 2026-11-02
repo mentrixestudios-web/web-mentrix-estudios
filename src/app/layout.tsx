@@ -32,12 +32,15 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico" },
+      { url: "/favicon.ico", sizes: "any" },
       { url: "/icon.png", type: "image/png" },
+      { url: "/logo-mentrix-emblema.png", type: "image/png" },
     ],
     apple: [
       { url: "/icon.png" },
+      { url: "/logo-mentrix-emblema.png" },
     ],
+    shortcut: "/favicon.ico",
   },
   openGraph: {
     title: "Mentrix Estudios · Videojuegos y Experiencias Interactivas",
