@@ -85,6 +85,34 @@ export default function DescargasSection() {
         "365 devocionales diarios y Plan de Lectura Anual",
       ],
     },
+    {
+      id: "linea-de-tiempo",
+      title: "Mentrix: Línea de Tiempo",
+      tagline: "Ordena los grandes hitos de la humanidad y pon a prueba tu intuición temporal.",
+      version: "v1.0.0 · PWA Web",
+      rating: "5.0",
+      category: "Historia & Cronología",
+      accent: "from-amber-500 via-orange-500 to-purple-600",
+      accentBorder: "border-amber-500/40 hover:border-amber-400",
+      accentBadge: "bg-amber-500/20 text-amber-200 border-amber-500/30",
+      glowBg: "bg-amber-600/10",
+      image: "/games/linea-de-tiempo.png",
+      mascotThumb: "/mascota-menti-tiempo.png",
+      playStoreUrl: "#",
+      webAppUrl: "https://tiempo.mentrixestudios.com",
+      spotlightHref: "#linea-de-tiempo",
+      specs: [
+        { label: "Plataforma", val: "Web PWA, Android, iOS & PC" },
+        { label: "Conexión", val: "100% Offline (Con Caché)" },
+        { label: "Instalación", val: "Directa sin tiendas (PWA)" },
+        { label: "Contenido", val: "500+ Hitos / 5 Eras Temporales" },
+      ],
+      highlights: [
+        "Mecánica ágil de arrastrar y soltar cartas cronológicas",
+        "Eras: Antigüedad, Edad Media, Revolución y Moderno",
+        "Modo Solitario con precisión y Duelos multijugador 1v1",
+      ],
+    },
   ];
 
   return (
@@ -113,10 +141,14 @@ export default function DescargasSection() {
           </p>
         </div>
 
-        {/* Featured PWA Showcase Card: Switcher between MQEM and Biblia */}
+        {/* Featured PWA Showcase Card: Switcher between MQEM, Tiempo and Biblia */}
         <div
           className={`mb-14 rounded-3xl border-2 ${
-            featuredPwa === "mqem" ? "border-purple-500/50" : "border-cyan-500/50"
+            featuredPwa === "mqem"
+              ? "border-purple-500/50"
+              : featuredPwa === "tiempo"
+              ? "border-amber-500/50"
+              : "border-cyan-500/50"
           } bg-gradient-to-r from-[#140c36] via-[#0d1633] to-[#0a182d] p-6 sm:p-8 lg:p-10 shadow-2xl shadow-cyan-950/40 relative overflow-hidden group transition-all`}
         >
           {/* Ambient Glows */}
@@ -131,7 +163,7 @@ export default function DescargasSection() {
               </span>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-wrap">
               <button
                 onClick={() => setFeaturedPwa("mqem")}
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
@@ -143,6 +175,19 @@ export default function DescargasSection() {
                 <Brain className="w-3.5 h-3.5" />
                 <span>¿Quién está en mi mente?</span>
                 <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-purple-400/30 text-purple-200">PWA</span>
+              </button>
+
+              <button
+                onClick={() => setFeaturedPwa("tiempo")}
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  featuredPwa === "tiempo"
+                    ? "bg-amber-600 text-white shadow-lg shadow-amber-600/40 border border-amber-400/50 scale-105"
+                    : "bg-purple-950/50 text-slate-300 hover:text-white border border-purple-800/40"
+                }`}
+              >
+                <Clock className="w-3.5 h-3.5" />
+                <span>Línea de Tiempo</span>
+                <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-amber-400/30 text-amber-200">PWA</span>
               </button>
 
               <button
@@ -243,6 +288,89 @@ export default function DescargasSection() {
                 </button>
               </div>
             </div>
+          ) : featuredPwa === "tiempo" ? (
+            /* Línea de Tiempo Showcase */
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 animate-fadeIn">
+              {/* Left: Mascot & Pitch */}
+              <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 flex-1">
+                <div className="relative shrink-0">
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-gradient-to-br from-amber-500/20 via-orange-600/30 to-purple-900 border border-amber-400/50 p-2 shadow-xl shadow-amber-500/20 flex items-center justify-center group-hover:scale-105 transition-transform">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/mascota-menti-tiempo.png"
+                      alt="Menti Tiempo PWA"
+                      className="w-full h-full object-contain filter drop-shadow-[0_6px_12px_rgba(0,0,0,0.6)]"
+                    />
+                    <div className="absolute -top-2 -right-2 px-2 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-black uppercase tracking-wider shadow">
+                      Web App
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-2.5 max-w-2xl">
+                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/50 text-amber-300 text-xs font-bold uppercase tracking-wider">
+                      <Globe className="w-3.5 h-3.5" />
+                      🌐 Disponible en Web
+                    </span>
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-purple-500/20 border border-purple-500/40 text-purple-300 text-xs font-bold uppercase tracking-wider">
+                      📲 Instalable en Android, iOS y PC
+                    </span>
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+                      ⚡ Funciona Sin Conexión (Offline)
+                    </span>
+                  </div>
+
+                  <h3 className="font-display font-black text-2xl sm:text-3xl text-white tracking-tight">
+                    Mentrix: Línea de Tiempo <span className="text-amber-400">(PWA Web)</span>
+                  </h3>
+
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    "Ordena los grandes hitos de la humanidad y pon a prueba tu intuición temporal. Ubica inventos, batallas y descubrimientos en su época exacta. ¡Ahora disponible directamente en tu navegador!"
+                  </p>
+
+                  {/* Features Highlights */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1 text-xs text-slate-300">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                      <span>Arrastra y suelta cartas en la línea</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                      <span>500+ hitos en 5 grandes eras</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                      <span>100% offline y sin tiendas</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Action Buttons */}
+              <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full sm:w-auto shrink-0 justify-center">
+                <a
+                  href="https://tiempo.mentrixestudios.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-400 via-orange-500 to-purple-600 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-extrabold text-sm tracking-wide shadow-xl shadow-amber-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer text-center"
+                >
+                  <span>Abrir / Instalar Aplicación</span>
+                  <ExternalLink className="w-4 h-4 text-slate-950" />
+                </a>
+
+                <button
+                  onClick={() => {
+                    setSelectedPwaModalGame("tiempo");
+                    setIsPwaModalOpen(true);
+                  }}
+                  className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-purple-950/60 hover:bg-purple-900/70 border border-purple-700/50 hover:border-amber-400 text-amber-200 hover:text-white font-semibold text-xs tracking-wide transition-all text-center cursor-pointer"
+                >
+                  <HelpCircle className="w-3.5 h-3.5 text-amber-400" />
+                  <span>¿Cómo instalar en Android, iOS o PC?</span>
+                </button>
+              </div>
+            </div>
           ) : (
             /* Biblia Showcase */
             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 animate-fadeIn">
@@ -330,7 +458,7 @@ export default function DescargasSection() {
         </div>
 
         {/* Available Games Download Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {games.map((g) => (
             <div
               key={g.id}
@@ -415,26 +543,41 @@ export default function DescargasSection() {
                         <span>Abrir Web PWA</span>
                       </a>
 
-                      <a
-                        href={g.playStoreUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-slate-950 hover:bg-slate-900 border border-purple-500/50 hover:border-cyan-400 text-slate-200 hover:text-white font-bold text-xs transition-all"
-                      >
-                        <Download className="w-3.5 h-3.5 text-cyan-300" />
-                        <span>Google Play</span>
-                      </a>
+                      {g.playStoreUrl && g.playStoreUrl !== "#" ? (
+                        <a
+                          href={g.playStoreUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-slate-950 hover:bg-slate-900 border border-purple-500/50 hover:border-cyan-400 text-slate-200 hover:text-white font-bold text-xs transition-all"
+                        >
+                          <Download className="w-3.5 h-3.5 text-cyan-300" />
+                          <span>Google Play</span>
+                        </a>
+                      ) : (
+                        <span className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3 py-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-xs">
+                          <Clock className="w-3.5 h-3.5 text-amber-400" />
+                          <span>Play Store Pronto</span>
+                        </span>
+                      )}
                     </div>
 
                     <button
                       onClick={() => {
-                        setSelectedPwaModalGame(g.id === "mqem" ? "mqem" : "biblia");
+                        setSelectedPwaModalGame(
+                          g.id === "mqem"
+                            ? "mqem"
+                            : g.id === "estudio-biblico"
+                            ? "biblia"
+                            : "tiempo"
+                        );
                         setIsPwaModalOpen(true);
                       }}
                       className="w-full py-2 px-3 rounded-xl bg-purple-950/30 hover:bg-purple-900/40 border border-purple-800/40 hover:border-cyan-400/50 text-cyan-200 hover:text-white text-[11px] font-semibold transition-all inline-flex items-center justify-center gap-1.5 cursor-pointer"
                     >
                       <HelpCircle className="w-3.5 h-3.5 text-cyan-400" />
-                      <span>¿Cómo instalar {g.id === "mqem" ? "Menti Mind" : "Menti Biblia"} en tu pantalla?</span>
+                      <span>
+                        ¿Cómo instalar {g.id === "mqem" ? "Menti Mind" : g.id === "estudio-biblico" ? "Menti Biblia" : "Menti Tiempo"} en tu pantalla?
+                      </span>
                     </button>
                   </div>
                 ) : (
@@ -490,10 +633,10 @@ export default function DescargasSection() {
           ))}
         </div>
 
-        {/* 3rd Game: Línea de Tiempo - Próximo Lanzamiento */}
-        <div className="rounded-3xl border border-amber-500/30 bg-gradient-to-r from-amber-950/40 via-[#180e28] to-purple-950/40 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
-          <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-5">
-            <div className="w-20 h-20 rounded-2xl bg-amber-500/10 border border-amber-500/30 p-1.5 shrink-0 flex items-center justify-center">
+        {/* Banner: Nuevo Lanzamiento Oficial - Línea de Tiempo Web PWA */}
+        <div className="rounded-3xl border border-amber-500/40 bg-gradient-to-r from-amber-950/40 via-[#180e28] to-purple-950/40 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-5 relative z-10">
+            <div className="w-20 h-20 rounded-2xl bg-amber-500/15 border border-amber-500/40 p-1.5 shrink-0 flex items-center justify-center shadow-lg shadow-amber-500/20">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/mascota-menti-tiempo.png"
@@ -503,25 +646,37 @@ export default function DescargasSection() {
             </div>
             <div>
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold uppercase tracking-wider mb-2">
-                <Clock className="w-3 h-3 text-amber-400" />
-                Próximamente en Google Play
+                <Sparkles className="w-3 h-3 text-amber-400 animate-pulse" />
+                ¡Nuevo Lanzamiento Oficial en Web PWA!
               </div>
-              <h3 className="font-display font-extrabold text-xl text-white mb-1">
-                Mentrix: Línea de Tiempo
+              <h3 className="font-display font-extrabold text-xl sm:text-2xl text-white mb-1">
+                Mentrix: Línea de Tiempo ya está en vivo
               </h3>
               <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed">
-                El estudio está completando la calibración histórica de más de 500 cartas para su estreno en Google Play Store este 2026.
+                Juega gratis desde tu navegador o agrégalo a la pantalla de tu celular o PC sin descargas pesadas. Desafía las eras de la historia con más de 500 cartas interactivas.
               </p>
             </div>
           </div>
 
-          <a
-            href="#linea-de-tiempo"
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg shadow-amber-500/20 transition-all shrink-0 w-full md:w-auto"
-          >
-            <span>Conocer Mecánica</span>
-            <ArrowRight className="w-4 h-4 text-slate-950" />
-          </a>
+          <div className="flex flex-col sm:flex-row items-center gap-3 relative z-10 shrink-0 w-full md:w-auto">
+            <a
+              href="https://tiempo.mentrixestudios.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-amber-500/30 transition-all w-full sm:w-auto text-center"
+            >
+              <span>Jugar Ahora Gratis</span>
+              <ExternalLink className="w-4 h-4 text-slate-950" />
+            </a>
+
+            <a
+              href="#linea-de-tiempo"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-2xl bg-purple-950/60 hover:bg-purple-900/60 border border-purple-700/50 text-amber-200 hover:text-white text-xs font-semibold transition-all w-full sm:w-auto text-center"
+            >
+              <span>Ver Spotlight</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
         </div>
 
         {/* Security & Offline Guarantees Footer */}

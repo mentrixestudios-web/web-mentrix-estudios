@@ -127,6 +127,12 @@ export default function GameCard({ game }: GameCardProps) {
                   <span>Web</span>
                 </span>
               )}
+              {game.platforms.includes("ios") && (
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-purple-950/60 border border-purple-800/40">
+                  <Smartphone className="w-3.5 h-3.5 text-purple-400" />
+                  <span>iOS</span>
+                </span>
+              )}
             </div>
           </div>
 
@@ -145,9 +151,9 @@ export default function GameCard({ game }: GameCardProps) {
               </a>
             )}
 
-            {isAvailable ? (
+            {game.downloads?.playStoreUrl ? (
               <a
-                href={game.downloads?.playStoreUrl || game.downloads?.apkUrl || "#"}
+                href={game.downloads.playStoreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-bold text-xs uppercase tracking-wider shadow-md shadow-purple-600/30 transition-all transform hover:-translate-y-0.5"
@@ -155,6 +161,11 @@ export default function GameCard({ game }: GameCardProps) {
                 <Download className="w-4 h-4 text-cyan-200" />
                 <span>Google Play</span>
               </a>
+            ) : isAvailable ? (
+              <span className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 font-semibold text-xs">
+                <Clock className="w-3.5 h-3.5 text-amber-400" />
+                <span>Play Store Pronto</span>
+              </span>
             ) : (
               <div className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-amber-950/60 border border-amber-500/40 text-amber-300 font-semibold text-xs uppercase tracking-wider cursor-default shadow-inner">
                 <Clock className="w-3.5 h-3.5 text-amber-400" />

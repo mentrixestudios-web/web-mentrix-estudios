@@ -43,12 +43,12 @@ export const MENTRIX_GAMES: GameItem[] = [
     tagline: "Ordena los grandes hitos de la humanidad y pon a prueba tu intuición temporal.",
     description:
       "¿La invención de la imprenta ocurrió antes o después de la caída de Constantinopla? Ubica inventos, batallas, descubrimientos y eventos universales en su posición cronológica exacta sin equivocarte en la línea del tiempo.",
-    status: "in_development",
-    statusBadge: "Próximo Lanzamiento · En Desarrollo",
+    status: "available",
+    statusBadge: "PWA Web · Ya Disponible",
     category: "Historia & Cronología",
     badgeAccent: "amber",
     coverImage: "/games/linea-de-tiempo.png",
-    platforms: ["android", "web"],
+    platforms: ["android", "web", "ios"],
     highlight: true,
     features: [
       "Mecánica ágil de arrastrar y soltar cartas cronológicas",
@@ -56,14 +56,17 @@ export const MENTRIX_GAMES: GameItem[] = [
       "Modo solitario con niveles de precisión progresivos",
       "Duelos multijugador por turnos",
       "Integración de eventos universales y cultura latinoamericana",
+      "Juego local 100% offline y PWA instalable sin tiendas",
     ],
     stats: [
       { value: "500+", label: "Hitos históricos" },
       { value: "5", label: "Eras temporales" },
-      { value: "1v1", label: "Duelos por turnos" },
-      { value: "2026", label: "Lanzamiento previsto" },
+      { value: "PWA Web", label: "Instalable" },
+      { value: "Offline", label: "Modo local" },
     ],
-    downloads: {},
+    downloads: {
+      webAppUrl: "https://tiempo.mentrixestudios.com",
+    },
   },
   {
     id: "estudio-biblico",

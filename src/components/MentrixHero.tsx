@@ -50,7 +50,7 @@ const MASCOT_SKINS: MascotSkin[] = [
     gameHref: "#linea-de-tiempo",
     image: "/mascota-menti-tiempo.png",
     accentClass: "text-amber-400",
-    badgeText: "Próximo Estreno · Cronos",
+    badgeText: "Web PWA · Cronos",
     badgeStyle: "bg-amber-500/20 text-amber-200 border-amber-400/50",
     dotColor: "bg-amber-500",
     glowShadow: "rgba(245,158,11,0.45)",
@@ -191,11 +191,13 @@ export default function MentrixHero() {
             </a>
 
             <a
-              href="#linea-de-tiempo"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-purple-950/40 hover:bg-purple-900/50 border border-purple-700/50 hover:border-amber-400 text-slate-200 hover:text-white font-semibold text-base transition-all"
+              href="https://tiempo.mentrixestudios.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-purple-950/40 hover:bg-purple-900/50 border border-amber-500/50 hover:border-amber-400 text-amber-200 hover:text-white font-semibold text-base transition-all group"
             >
-              <Zap className="w-5 h-5 text-amber-400" />
-              <span>Próximo Estreno: Línea de Tiempo</span>
+              <Zap className="w-5 h-5 text-amber-400 group-hover:scale-110 transition-transform" />
+              <span>Jugar: Línea de Tiempo (Web PWA)</span>
             </a>
           </div>
 

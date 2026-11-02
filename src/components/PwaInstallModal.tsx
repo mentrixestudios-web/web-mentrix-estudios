@@ -18,9 +18,11 @@ import {
   Layers,
   ArrowRight,
   Brain,
+  Clock,
+  History,
 } from "lucide-react";
 
-export type PwaGameId = "mqem" | "biblia";
+export type PwaGameId = "mqem" | "biblia" | "tiempo";
 
 export interface PwaInstallModalProps {
   isOpen: boolean;
@@ -96,6 +98,49 @@ const PWA_GAMES_DATA: Record<
         "O haz clic en el menú (⋮) y selecciona «Instalar Mentrix: ¿Quién está en mi mente?».",
       pcFinished:
         "Se abrirá en su propia ventana de escritorio optimizada con panel de deducción amplio.",
+    },
+  },
+  tiempo: {
+    title: "Mentrix: Línea de Tiempo",
+    shortTitle: "Línea de Tiempo",
+    tagline: "Ordena los grandes hitos de la humanidad y pon a prueba tu intuición temporal.",
+    description:
+      "Ubica inventos, batallas, descubrimientos y eventos universales en su posición cronológica exacta. ¡Ahora disponible directamente en tu navegador sin descargas pesadas!",
+    url: "https://tiempo.mentrixestudios.com",
+    playStoreUrl: "#",
+    mascotImage: "/mascota-menti-tiempo.png",
+    mascotAlt: "Menti Tiempo",
+    mascotName: "Menti Tiempo",
+    accentGradient: "from-amber-400 via-orange-500 to-purple-600",
+    accentBorder: "border-amber-500/40",
+    accentGlow: "shadow-amber-950/80",
+    badgeAccent: "bg-amber-500/20 border-amber-500/40 text-amber-300",
+    features: [
+      {
+        icon: Clock,
+        title: "Mecánica Cronológica",
+        desc: "Arrastra y suelta cartas en la cinta temporal histórica interactiva.",
+      },
+      {
+        icon: WifiOff,
+        title: "Caché Offline",
+        desc: "Juega sin conexión con más de 500 cartas y eventos históricos.",
+      },
+      {
+        icon: History,
+        title: "Duelos & Solitario",
+        desc: "Supera tus rachas en solitario o compite en duelos 1v1.",
+      },
+    ],
+    instructions: {
+      androidFinished:
+        "¡Listo! Se agregará el icono de Menti Tiempo en tu pantalla y se abrirá a pantalla completa como una app nativa.",
+      iosFinished:
+        "Presiona «Agregar» arriba a la derecha. ¡Ya tienes Mentrix Línea de Tiempo en tu iPhone sin pasar por la App Store!",
+      pcStep3:
+        "O haz clic en el menú (⋮) y selecciona «Instalar Mentrix: Línea de Tiempo».",
+      pcFinished:
+        "Se abrirá en su propia ventana de escritorio optimizada con panel cronológico amplio.",
     },
   },
   biblia: {
@@ -197,6 +242,18 @@ export default function PwaInstallModal({
           >
             <Brain className="w-3.5 h-3.5" />
             <span>¿Quién está en mi mente?</span>
+          </button>
+
+          <button
+            onClick={() => setSelectedGame("tiempo")}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 ${
+              selectedGame === "tiempo"
+                ? "bg-amber-600 text-white shadow-md shadow-amber-600/40 border border-amber-400/50"
+                : "bg-purple-950/40 text-slate-300 hover:text-white border border-purple-800/40"
+            }`}
+          >
+            <Clock className="w-3.5 h-3.5" />
+            <span>Línea de Tiempo</span>
           </button>
 
           <button
@@ -452,15 +509,22 @@ export default function PwaInstallModal({
 
         {/* Bottom Actions */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-purple-900/40">
-          <a
-            href={currentConfig.playStoreUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-slate-400 hover:text-cyan-300 transition-colors inline-flex items-center gap-1"
-          >
-            <span>¿Prefieres la versión de Google Play Store? Clic aquí</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </a>
+          {currentConfig.playStoreUrl && currentConfig.playStoreUrl !== "#" ? (
+            <a
+              href={currentConfig.playStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-slate-400 hover:text-cyan-300 transition-colors inline-flex items-center gap-1"
+            >
+              <span>¿Prefieres la versión de Google Play Store? Clic aquí</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+          ) : (
+            <span className="text-xs text-amber-300/80 inline-flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span>Próximamente en Google Play · ¡Disponible y jugable ahora en Web PWA!</span>
+            </span>
+          )}
 
           <button
             onClick={onClose}

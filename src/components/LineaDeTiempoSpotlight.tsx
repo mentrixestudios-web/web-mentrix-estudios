@@ -2,17 +2,35 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Clock, Zap, History, Milestone, Compass, Sparkles, Bell, RefreshCw, CheckCircle2 } from "lucide-react";
+import {
+  Clock,
+  Zap,
+  History,
+  Milestone,
+  Compass,
+  Sparkles,
+  Bell,
+  RefreshCw,
+  CheckCircle2,
+  Globe,
+  Smartphone,
+  ExternalLink,
+  HelpCircle,
+} from "lucide-react";
+import PwaInstallModal from "./PwaInstallModal";
 
 const MENTI_TIEMPO_DIALOGUES = [
   "¡El tiempo no se detiene! Quien conoce la historia tiene el poder de dominarlo. ⏳",
+  "¡Ya puedes jugar gratis directamente en tu navegador e instalarlo en tu celular como app nativa! 🌐",
   "¿El telescopio de Galileo se inventó antes o después de la llegada a América? ¡A ver si no dudas! 📜",
+  "100% offline y sin gastar datos con Service Worker local. ¡El viaje en el tiempo empieza aquí! ⚡",
   "¡Cuidado con mezclar la Revolución Industrial con el Imperio Romano! Cada era tiene su lugar. 🏛️",
   "Cada carta cronológica que ordenes correctamente te acerca a ser un Maestro de las Eras. ✨",
-  "Desde el 2500 a.C. hasta la inteligencia artificial... ¡el viaje en el tiempo apenas comienza! 🚀",
+  "Desde el 2500 a.C. hasta la era digital... ¿Listo para poner a prueba tu intuición? 🚀",
 ];
 
 export default function LineaDeTiempoSpotlight() {
+  const [isPwaModalOpen, setIsPwaModalOpen] = useState(false);
   const [dialogueIdx, setDialogueIdx] = useState(0);
   const [bouncing, setBouncing] = useState(false);
 
@@ -60,9 +78,9 @@ export default function LineaDeTiempoSpotlight() {
           {/* Left Column: Information */}
           <div className="lg:col-span-7">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs sm:text-sm font-semibold mb-6">
-              <Zap className="w-4 h-4 text-amber-400" />
-              <span>Proyecto en Desarrollo Activo · Próximo Estreno</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs sm:text-sm font-semibold mb-6 shadow-inner backdrop-blur-md">
+              <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
+              <span>¡Disponible Ahora en Web PWA! · 100% Gratuito</span>
             </div>
 
             <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-white tracking-tight leading-tight mb-6">
@@ -116,17 +134,41 @@ export default function LineaDeTiempoSpotlight() {
               </div>
             </div>
 
-            {/* Callout button */}
-            <div className="flex flex-col sm:flex-row items-center gap-4">
+            {/* Action buttons */}
+            <div className="flex flex-col sm:flex-row items-center gap-3">
               <a
-                href="#contacto"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-slate-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition-all transform hover:-translate-y-0.5"
+                href="https://tiempo.mentrixestudios.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 via-orange-500 to-purple-600 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-extrabold text-sm shadow-lg shadow-amber-500/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
               >
-                <Bell className="w-4 h-4" />
-                <span>Suscribirse para el Lanzamiento</span>
+                <Globe className="w-4 h-4 text-slate-950" />
+                <span>Abrir / Jugar Web App</span>
+                <ExternalLink className="w-4 h-4 text-slate-950" />
               </a>
-              <span className="text-xs text-slate-400">
-                Lanzamiento previsto para 2026 en Android & Web
+
+              <button
+                onClick={() => setIsPwaModalOpen(true)}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-purple-950/50 hover:bg-purple-900/60 border border-purple-700/50 hover:border-amber-400 text-amber-200 hover:text-white font-semibold text-xs sm:text-sm transition-all cursor-pointer"
+              >
+                <HelpCircle className="w-4 h-4 text-amber-400" />
+                <span>¿Cómo instalar en celular/PC?</span>
+              </button>
+            </div>
+
+            {/* PWA Feature Badges */}
+            <div className="flex flex-wrap items-center gap-2 pt-4 text-[11px] text-slate-300">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-950/50 border border-amber-800/50 text-amber-300">
+                <Globe className="w-3 h-3 text-amber-400" />
+                Disponible en Web
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-purple-950/50 border border-purple-800/50 text-purple-300">
+                <Smartphone className="w-3 h-3 text-purple-400" />
+                Instalable en Android, iOS y PC
+              </span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-950/50 border border-emerald-800/50 text-emerald-300">
+                <Zap className="w-3 h-3 text-emerald-400" />
+                Funciona Sin Conexión (Offline)
               </span>
             </div>
           </div>
@@ -234,6 +276,14 @@ export default function LineaDeTiempoSpotlight() {
           </div>
         </div>
       </div>
+
+      {/* PWA Install Tutorial Modal */}
+      <PwaInstallModal
+        isOpen={isPwaModalOpen}
+        onClose={() => setIsPwaModalOpen(false)}
+        gameId="tiempo"
+        appUrl="https://tiempo.mentrixestudios.com"
+      />
     </section>
   );
 }
