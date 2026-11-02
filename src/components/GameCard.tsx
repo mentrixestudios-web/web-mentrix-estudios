@@ -109,45 +109,45 @@ export default function GameCard({ game }: GameCardProps) {
           </div>
         </div>
 
-        {/* Footer of the Card: Platforms & Actions */}
-        <div className="pt-6 border-t border-purple-900/30 flex flex-col sm:flex-row items-center justify-between gap-4 mt-auto">
-          {/* Platforms */}
-          <div className="flex items-center gap-2 text-slate-400 text-xs w-full sm:w-auto">
-            <span className="font-medium">Plataforma:</span>
-            <div className="flex items-center gap-1.5 text-slate-300">
+        {/* Footer of the Card: Platforms (Row 1) & Actions (Row 2) */}
+        <div className="pt-5 border-t border-purple-900/30 flex flex-col gap-3.5 mt-auto">
+          {/* Fila 1: Plataformas soportadas */}
+          <div className="flex items-center justify-between gap-2 text-slate-400 text-xs w-full">
+            <span className="font-semibold text-slate-400">Plataformas:</span>
+            <div className="flex flex-wrap items-center gap-1.5 text-slate-300">
               {game.platforms.includes("android") && (
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-purple-950/60 border border-purple-800/40">
-                  <Smartphone className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-purple-950/70 border border-purple-800/50 text-[11px] font-medium">
+                  <Smartphone className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                   <span>Android</span>
                 </span>
               )}
               {game.platforms.includes("web") && (
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-purple-950/60 border border-purple-800/40">
-                  <Globe className="w-3.5 h-3.5 text-cyan-400" />
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-purple-950/70 border border-purple-800/50 text-[11px] font-medium">
+                  <Globe className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
                   <span>Web</span>
                 </span>
               )}
               {game.platforms.includes("ios") && (
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-purple-950/60 border border-purple-800/40">
-                  <Smartphone className="w-3.5 h-3.5 text-purple-400" />
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-purple-950/70 border border-purple-800/50 text-[11px] font-medium">
+                  <Smartphone className="w-3.5 h-3.5 text-purple-400 shrink-0" />
                   <span>iOS</span>
                 </span>
               )}
             </div>
           </div>
 
-          {/* Action Button */}
-          <div className="w-full sm:w-auto flex flex-wrap items-center gap-2">
+          {/* Fila 2: Botones de Acción (Fila dedicada con ancho completo) */}
+          <div className="w-full flex items-center gap-2.5">
             {game.downloads?.webAppUrl && (
               <a
                 href={game.downloads.webAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-cyan-950/60 hover:bg-cyan-900/70 border border-cyan-500/50 hover:border-cyan-400 text-cyan-200 hover:text-white font-bold text-xs uppercase tracking-wider transition-all"
+                className="flex-1 min-w-0 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-cyan-950/70 hover:bg-cyan-900/80 border border-cyan-500/50 hover:border-cyan-400 text-cyan-200 hover:text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-cyan-950/40 text-center"
                 title="Abrir o instalar versión Web PWA sin tiendas"
               >
-                <Globe className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Web PWA</span>
+                <Globe className="w-3.5 h-3.5 text-cyan-300 shrink-0" />
+                <span className="truncate">Web PWA</span>
               </a>
             )}
 
@@ -156,20 +156,20 @@ export default function GameCard({ game }: GameCardProps) {
                 href={game.downloads.playStoreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-bold text-xs uppercase tracking-wider shadow-md shadow-purple-600/30 transition-all transform hover:-translate-y-0.5"
+                className="flex-1 min-w-0 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-bold text-xs uppercase tracking-wider shadow-md shadow-purple-600/30 transition-all transform hover:-translate-y-0.5 text-center"
               >
-                <Download className="w-4 h-4 text-cyan-200" />
-                <span>Google Play</span>
+                <Download className="w-3.5 h-3.5 text-cyan-200 shrink-0" />
+                <span className="truncate">Google Play</span>
               </a>
             ) : isAvailable ? (
-              <span className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 font-semibold text-xs">
-                <Clock className="w-3.5 h-3.5 text-amber-400" />
-                <span>Play Store Pronto</span>
-              </span>
+              <div className="flex-1 min-w-0 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 font-semibold text-xs text-center">
+                <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span className="truncate">Play Store Pronto</span>
+              </div>
             ) : (
-              <div className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-amber-950/60 border border-amber-500/40 text-amber-300 font-semibold text-xs uppercase tracking-wider cursor-default shadow-inner">
-                <Clock className="w-3.5 h-3.5 text-amber-400" />
-                <span>En Desarrollo Activo</span>
+              <div className="flex-1 min-w-0 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-amber-950/60 border border-amber-500/40 text-amber-300 font-semibold text-xs uppercase tracking-wider cursor-default shadow-inner text-center">
+                <Clock className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                <span className="truncate">En Desarrollo</span>
               </div>
             )}
           </div>

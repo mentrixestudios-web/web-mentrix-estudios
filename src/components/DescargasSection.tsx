@@ -548,13 +548,13 @@ export default function DescargasSection() {
                           href={g.playStoreUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-slate-950 hover:bg-slate-900 border border-purple-500/50 hover:border-cyan-400 text-slate-200 hover:text-white font-bold text-xs transition-all"
+                          className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-2xl bg-slate-950 hover:bg-slate-900 border border-purple-500/50 hover:border-cyan-400 text-slate-200 hover:text-white font-bold text-xs transition-all text-center"
                         >
                           <Download className="w-3.5 h-3.5 text-cyan-300" />
                           <span>Google Play</span>
                         </a>
                       ) : (
-                        <span className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-3 py-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-xs">
+                        <span className="w-full sm:flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-xs text-center">
                           <Clock className="w-3.5 h-3.5 text-amber-400" />
                           <span>Play Store Pronto</span>
                         </span>
