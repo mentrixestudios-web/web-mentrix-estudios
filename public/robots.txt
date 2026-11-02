@@ -1,0 +1,8 @@
+# https://www.robotstxt.org/robotstxt.html
+# Robots.txt oficial para Mentrix Estudios
+
+User-agent: *
+Allow: /
+
+# Declaración de Sitemap oficial para indexación en Google
+Sitemap: https://mentrixestudios.com/sitemap.xml

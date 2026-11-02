@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://mentrixestudios.com/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://mentrixestudios.com/logo-mentrix-oficial.jpg</image:loc>
+      <image:title>Mentrix Estudios · Videojuegos y Experiencias Interactivas</image:title>
+      <image:caption>Estudio de desarrollo de videojuegos indie y trivias inteligentes en Chile</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mentrixestudios.com/mascotas-mentrix.jpg</image:loc>
+      <image:title>El Universo de Menti · Mentrix Estudios</image:title>
+      <image:caption>Mascotas oficiales y personajes inteligentes del universo Mentrix</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://mentrixestudios.com/mascota-menti-original.png</image:loc>
+      <image:title>Menti Original · Mentrix: ¿Quién está en mi mente?</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mentrixestudios.com/mascota-menti-tiempo.png</image:loc>
+      <image:title>Menti Tiempo · Mentrix: Línea de Tiempo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://mentrixestudios.com/mascota-menti-biblia.png</image:loc>
+      <image:title>Menti Biblia · Mentrix: Estudio Bíblico</image:title>
+    </image:image>
+  </url>
+</urlset>
