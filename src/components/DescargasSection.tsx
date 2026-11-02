@@ -38,7 +38,7 @@ export default function DescargasSection() {
       accentBorder: "border-purple-500/40 hover:border-purple-400",
       accentBadge: "bg-purple-500/20 text-purple-200 border-purple-500/30",
       glowBg: "bg-purple-600/10",
-      image: "/games/mind-game-splash.png",
+      image: "/mascota-menti-original.png",
       mascotThumb: "/mascota-menti-original.png",
       playStoreUrl:
         "https://play.google.com/store/apps/details?id=com.mentrix.quienestaenmente&pcampaignid=web_share",
@@ -67,7 +67,7 @@ export default function DescargasSection() {
       accentBorder: "border-cyan-500/40 hover:border-cyan-400",
       accentBadge: "bg-cyan-500/20 text-cyan-200 border-cyan-500/30",
       glowBg: "bg-cyan-600/10",
-      image: "/games/mentrix-biblia.png",
+      image: "/mascota-menti-biblia.png",
       mascotThumb: "/mascota-menti-biblia.png",
       playStoreUrl:
         "https://play.google.com/store/apps/details?id=com.mentrix.biblia&pcampaignid=web_share",
@@ -96,7 +96,7 @@ export default function DescargasSection() {
       accentBorder: "border-amber-500/40 hover:border-amber-400",
       accentBadge: "bg-amber-500/20 text-amber-200 border-amber-500/30",
       glowBg: "bg-amber-600/10",
-      image: "/games/linea-de-tiempo.png",
+      image: "/mascota-menti-tiempo.png",
       mascotThumb: "/mascota-menti-tiempo.png",
       playStoreUrl: "#",
       webAppUrl: "https://tiempo.mentrixestudios.com",

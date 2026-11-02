@@ -12,8 +12,8 @@ export const MENTRIX_GAMES: GameItem[] = [
     statusBadge: "PWA Web & Google Play",
     category: "Deducción & Trivia",
     badgeAccent: "purple",
-    coverImage: "/games/mind-game-splash.png",
-    mascotImage: "/mentrix-mascot.webp",
+    coverImage: "/mascota-menti-original.png",
+    mascotImage: "/mascota-menti-original.png",
     platforms: ["android", "web", "ios"],
     highlight: true,
     features: [
@@ -47,7 +47,8 @@ export const MENTRIX_GAMES: GameItem[] = [
     statusBadge: "PWA Web · Ya Disponible",
     category: "Historia & Cronología",
     badgeAccent: "amber",
-    coverImage: "/games/linea-de-tiempo.png",
+    coverImage: "/mascota-menti-tiempo.png",
+    mascotImage: "/mascota-menti-tiempo.png",
     platforms: ["android", "web", "ios"],
     highlight: true,
     features: [
@@ -79,7 +80,8 @@ export const MENTRIX_GAMES: GameItem[] = [
     statusBadge: "Edición Especial",
     category: "Educación & Fe",
     badgeAccent: "cyan",
-    coverImage: "/games/mentrix-biblia.png",
+    coverImage: "/mascota-menti-biblia.png",
+    mascotImage: "/mascota-menti-biblia.png",
     platforms: ["android", "web", "ios"],
     highlight: true,
     features: [

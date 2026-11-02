@@ -39,12 +39,21 @@ export default function GameCard({ game }: GameCardProps) {
       <div className="relative h-56 sm:h-64 w-full bg-[#080417] overflow-hidden flex items-center justify-center p-6 border-b border-purple-900/30">
         {/* Glow behind cover */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#120a2e] to-transparent z-10" />
+        <div
+          className={`absolute w-36 h-36 rounded-full blur-3xl opacity-35 pointer-events-none transition-all ${
+            game.badgeAccent === "amber"
+              ? "bg-amber-500/40"
+              : game.badgeAccent === "cyan"
+              ? "bg-cyan-500/40"
+              : "bg-purple-500/40"
+          }`}
+        />
         
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={game.coverImage}
           alt={game.title}
-          className="max-h-full max-w-full object-contain relative z-0 transition-transform duration-500 group-hover:scale-105"
+          className="max-h-full max-w-full object-contain relative z-0 transition-transform duration-500 group-hover:scale-110 filter drop-shadow-[0_8px_18px_rgba(0,0,0,0.6)]"
         />
 
         {/* Badges on top of cover */}
