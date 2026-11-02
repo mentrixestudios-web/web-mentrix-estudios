@@ -33,7 +33,7 @@ export const MENTRIX_GAMES: GameItem[] = [
     downloads: {
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.mentrix.quienestaenmente&pcampaignid=web_share",
       apkUrl: "https://play.google.com/store/apps/details?id=com.mentrix.quienestaenmente&pcampaignid=web_share",
-      webAppUrl: "https://mentrix-mind-game.vercel.app",
+      webAppUrl: "https://mente.mentrixestudios.com",
     },
   },
   {
@@ -100,7 +100,7 @@ export const MENTRIX_GAMES: GameItem[] = [
     downloads: {
       playStoreUrl: "https://play.google.com/store/apps/details?id=com.mentrix.biblia&pcampaignid=web_share",
       apkUrl: "https://play.google.com/store/apps/details?id=com.mentrix.biblia&pcampaignid=web_share",
-      webAppUrl: "https://mentrix-estudio-biblico.vercel.app",
+      webAppUrl: "https://biblia.mentrixestudios.com",
     },
   },
 ];

@@ -160,7 +160,7 @@ export default function MqemSpotlight() {
             {/* Action buttons */}
             <div className="flex flex-col sm:flex-row items-center gap-3">
               <a
-                href="https://mentrix-mind-game.vercel.app"
+                href="https://mente.mentrixestudios.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white font-extrabold text-sm shadow-lg shadow-purple-600/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"

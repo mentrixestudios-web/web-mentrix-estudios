@@ -62,7 +62,7 @@ const PWA_GAMES_DATA: Record<
     tagline: "El juego definitivo de deducción psicológica y pistas estratégicas.",
     description:
       "Adivina el personaje secreto antes de que se acaben tus vidas o tiempo. Pon a prueba tu mente con más de 210 personajes históricos, culturales y científicos. ¡Ahora disponible directamente en tu navegador!",
-    url: "https://mentrix-mind-game.vercel.app",
+    url: "https://mente.mentrixestudios.com",
     playStoreUrl:
       "https://play.google.com/store/apps/details?id=com.mentrix.quienestaenmente&pcampaignid=web_share",
     mascotImage: "/mascota-menti-original.png",
@@ -149,7 +149,7 @@ const PWA_GAMES_DATA: Record<
     tagline: "Aprende la Biblia jugando, lee el plan anual y reflexiona cada día.",
     description:
       "Aprende la Biblia jugando, lee el plan anual, reflexiona cada día y desafía tu mente con 365 devocionales y trivias. ¡Disponible directamente en tu navegador!",
-    url: "https://mentrix-estudio-biblico.vercel.app",
+    url: "https://biblia.mentrixestudios.com",
     playStoreUrl:
       "https://play.google.com/store/apps/details?id=com.mentrix.biblia&pcampaignid=web_share",
     mascotImage: "/mascota-menti-biblia.png",

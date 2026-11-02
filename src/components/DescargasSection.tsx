@@ -42,7 +42,7 @@ export default function DescargasSection() {
       mascotThumb: "/mascota-menti-original.png",
       playStoreUrl:
         "https://play.google.com/store/apps/details?id=com.mentrix.quienestaenmente&pcampaignid=web_share",
-      webAppUrl: "https://mentrix-mind-game.vercel.app",
+      webAppUrl: "https://mente.mentrixestudios.com",
       spotlightHref: "#mqem",
       specs: [
         { label: "Plataforma", val: "Web PWA, Android, iOS & PC" },
@@ -71,7 +71,7 @@ export default function DescargasSection() {
       mascotThumb: "/mascota-menti-biblia.png",
       playStoreUrl:
         "https://play.google.com/store/apps/details?id=com.mentrix.biblia&pcampaignid=web_share",
-      webAppUrl: "https://mentrix-estudio-biblico.vercel.app",
+      webAppUrl: "https://biblia.mentrixestudios.com",
       spotlightHref: "#estudio-biblico",
       specs: [
         { label: "Plataforma", val: "Web PWA, Android, iOS & PC" },
@@ -267,7 +267,7 @@ export default function DescargasSection() {
               {/* Right: Action Buttons */}
               <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full sm:w-auto shrink-0 justify-center">
                 <a
-                  href="https://mentrix-mind-game.vercel.app"
+                  href="https://mente.mentrixestudios.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-400 hover:from-purple-400 hover:to-cyan-300 text-white font-extrabold text-sm tracking-wide shadow-xl shadow-purple-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer text-center"
@@ -433,7 +433,7 @@ export default function DescargasSection() {
               {/* Right: Action Buttons */}
               <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full sm:w-auto shrink-0 justify-center">
                 <a
-                  href="https://mentrix-estudio-biblico.vercel.app"
+                  href="https://biblia.mentrixestudios.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-400 via-indigo-500 to-purple-600 hover:from-cyan-300 hover:to-purple-500 text-white font-extrabold text-sm tracking-wide shadow-xl shadow-cyan-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer text-center"

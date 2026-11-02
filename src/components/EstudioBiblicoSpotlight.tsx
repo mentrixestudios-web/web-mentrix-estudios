@@ -144,7 +144,7 @@ export default function EstudioBiblicoSpotlight() {
             {/* Action buttons */}
             <div className="flex flex-col sm:flex-row items-center gap-3">
               <a
-                href="https://mentrix-estudio-biblico.vercel.app"
+                href="https://biblia.mentrixestudios.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 via-indigo-500 to-purple-600 hover:from-cyan-300 hover:to-purple-500 text-white font-extrabold text-sm shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
@@ -333,7 +333,7 @@ export default function EstudioBiblicoSpotlight() {
         isOpen={isPwaModalOpen}
         onClose={() => setIsPwaModalOpen(false)}
         gameId="biblia"
-        appUrl="https://mentrix-estudio-biblico.vercel.app"
+        appUrl="https://biblia.mentrixestudios.com"
       />
     </section>
   );
