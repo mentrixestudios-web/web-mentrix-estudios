@@ -113,7 +113,7 @@ export const STUDIO_INFO = {
   founder: "ENLACE Soluciones Digitales",
   creator: "ENLACE Soluciones Digitales",
   location: "La Serena, Chile",
-  contactEmail: "mentrix.estudios@gmail.com",
+  contactEmail: "contacto@mentrixestudios.com",
   agencyPartner: {
     name: "ENLACE Soluciones Digitales",
     url: "https://redenlace.cl",

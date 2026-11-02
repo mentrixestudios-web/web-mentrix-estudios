@@ -90,6 +90,7 @@ const jsonLd = {
       "@id": "https://mentrixestudios.com/#organization",
       "name": "Mentrix Estudios",
       "url": "https://mentrixestudios.com",
+      "email": "contacto@mentrixestudios.com",
       "logo": {
         "@type": "ImageObject",
         "url": "https://mentrixestudios.com/logo-mentrix-emblema.png",
