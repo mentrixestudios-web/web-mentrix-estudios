@@ -3,21 +3,22 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Gamepad2, Sparkles, Menu, X, Rocket, Download } from "lucide-react";
+import { Gamepad2, Sparkles, Menu, X, Rocket, Download, Coins } from "lucide-react";
 
 export default function MentrixNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: "Inicio", href: "#hero" },
-    { label: "Juegos", href: "#juegos" },
-    { label: "Descargas", href: "#descargas" },
-    { label: "¿Quién en mi mente?", href: "#mqem" },
-    { label: "Línea de Tiempo", href: "#linea-de-tiempo" },
-    { label: "Estudio Bíblico", href: "#estudio-biblico" },
-    { label: "Mascotas", href: "#mascotas" },
-    { label: "El Estudio", href: "#estudio" },
-    { label: "Contacto", href: "#contacto" },
+    { label: "Inicio", href: "/#hero" },
+    { label: "Juegos", href: "/#juegos" },
+    { label: "Tienda Monedas", href: "/tienda" },
+    { label: "Descargas", href: "/#descargas" },
+    { label: "¿Quién en mi mente?", href: "/#mqem" },
+    { label: "Línea de Tiempo", href: "/#linea-de-tiempo" },
+    { label: "Estudio Bíblico", href: "/#estudio-biblico" },
+    { label: "Mascotas", href: "/#mascotas" },
+    { label: "El Estudio", href: "/#estudio" },
+    { label: "Contacto", href: "/#contacto" },
   ];
 
   return (
@@ -65,12 +66,20 @@ export default function MentrixNavbar() {
 
         {/* CTA & Mobile Toggle */}
         <div className="flex items-center gap-3">
+          <Link
+            href="/tienda"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/40 text-xs sm:text-sm font-semibold transition-all transform hover:-translate-y-0.5"
+          >
+            <Coins className="w-4 h-4 text-amber-400 fill-amber-400/20" />
+            <span>Tienda</span>
+          </Link>
+
           <a
-            href="#descargas"
+            href="/#descargas"
             className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 hover:from-purple-500 hover:to-cyan-400 text-white text-xs sm:text-sm font-semibold shadow-lg shadow-purple-600/30 hover:shadow-cyan-500/40 transition-all transform hover:-translate-y-0.5"
           >
             <Download className="w-4 h-4 text-cyan-200" />
-            <span>Descargar en Google Play</span>
+            <span>Descargar</span>
           </a>
 
           <button
